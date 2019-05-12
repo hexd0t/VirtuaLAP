@@ -8,3 +8,5 @@ Java_de_virtualap_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+
+//See https://www.sisik.eu/blog/android/ndk/camera for getting images

@@ -1,0 +1,12 @@
+[submodule "Desktop/Dependencies/glfw"]
+	path = Desktop/Dependencies/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "Global/glm"]
+	path = Global/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "Desktop/Dependencies/libpng"]
+	path = Desktop/Dependencies/libpng
+	url = https://git.code.sf.net/p/libpng/code
+[submodule "Desktop/Dependencies/zlib"]
+	path = Desktop/Dependencies/zlib
+	url = https://github.com/madler/zlib
