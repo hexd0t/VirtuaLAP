@@ -5,8 +5,8 @@
       <config projectName="VirtuaLAP" targetName="example64" />
       <config projectName="VirtuaLAP" targetName="zlib" />
       <config projectName="VirtuaLAP" targetName="VirtuaLAP-Desktop" />
-      <config projectName="VirtuaLAP" targetName="glfw" />
       <config projectName="VirtuaLAP" targetName="minigzip" />
+      <config projectName="VirtuaLAP" targetName="glfw" />
       <config projectName="VirtuaLAP" targetName="uninstall" />
       <config projectName="VirtuaLAP" targetName="genfiles" />
       <config projectName="VirtuaLAP" targetName="example" />
@@ -17,36 +17,26 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" TOOLCHAIN_NAME="MinGW (Posix)" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a70179c-8050-475e-b9f4-8b36ebd0d31d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Desktop/Dependencies/glfw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Desktop/Dependencies/libpng" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Desktop/Dependencies/zlib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Desktop/UI.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Desktop/UI.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/Core.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/Core.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/ImageAnalysis.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/ImageAnalysis.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/PipelineInterfaces.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/PlatformInterfaces.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/Simulation.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/Simulation.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/TrackGeneration.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/TrackGeneration.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Global/glm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android/app/src/main/cpp/native-lib.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Android/app/src/main/cpp/native-lib.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Desktop/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Desktop/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/zlib" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/zlib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/zlib/zconf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/UI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/UI.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Global/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Global/Core.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogoBG.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <ignored path="$PROJECT_DIR$/cmake-build-release/" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug-posix/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,13 +50,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Desktop/UI.h">
+        <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-              <folding>
-                <element signature="e#13#35#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="578">
+              <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -84,51 +71,55 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
+        <entry file="file://$PROJECT_DIR$/Desktop/UI.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Global/TrackGeneration.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Global/PipelineInterfaces.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="20" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="20" />
+            <state relative-caret-position="118">
+              <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="24" />
               <folding>
-                <element signature="e#14#31#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#118#145#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Global/TrackGeneration.h">
+        <entry file="file://$PROJECT_DIR$/Readme.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+            <state relative-caret-position="34">
+              <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Global/Simulation.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Global/Simulation.cpp">
+        <entry file="file://$PROJECT_DIR$/Desktop/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+            <state relative-caret-position="158">
+              <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#14#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -180,29 +171,30 @@
         <option value="$PROJECT_DIR$/Global/Interfaces.h" />
         <option value="$PROJECT_DIR$/Android/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/Android/app/src/main/cpp/native-lib.cpp" />
-        <option value="$PROJECT_DIR$/Desktop/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Global/ImageAnalysis.h" />
         <option value="$PROJECT_DIR$/Global/ImageAnalysis.cpp" />
-        <option value="$PROJECT_DIR$/Desktop/PlatformInterfaces.cpp" />
         <option value="$PROJECT_DIR$/Global/PlatformInterfaces.h" />
         <option value="$PROJECT_DIR$/Desktop/UI.h" />
         <option value="$PROJECT_DIR$/Desktop/main.cpp" />
-        <option value="$PROJECT_DIR$/Desktop/UI.cpp" />
         <option value="$PROJECT_DIR$/Global/Core.h" />
         <option value="$PROJECT_DIR$/Global/PipelineInterfaces.h" />
         <option value="$PROJECT_DIR$/Global/TrackGeneration.h" />
         <option value="$PROJECT_DIR$/Global/TrackGeneration.cpp" />
-        <option value="$PROJECT_DIR$/Global/Core.cpp" />
         <option value="$PROJECT_DIR$/Global/Simulation.h" />
         <option value="$PROJECT_DIR$/Global/Simulation.cpp" />
+        <option value="$PROJECT_DIR$/Desktop/PlatformInterfaces.cpp" />
+        <option value="$PROJECT_DIR$/Global/Core.cpp" />
+        <option value="$PROJECT_DIR$/Desktop/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Desktop/UI.cpp" />
+        <option value="$PROJECT_DIR$/Readme.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="3864" />
-    <option name="height" value="2124" />
+    <option name="x" value="3829" />
+    <option name="y" value="448" />
+    <option name="width" value="1942" />
+    <option name="height" value="1062" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -228,6 +220,12 @@
             <path>
               <item name="VirtuaLAP" type="b2602c69:ProjectViewProjectNode" />
               <item name="VirtuaLAP" type="462c0819:PsiDirectoryNode" />
+              <item name="Desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="Dependencies" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VirtuaLAP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VirtuaLAP" type="462c0819:PsiDirectoryNode" />
               <item name="Global" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -241,6 +239,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -260,7 +259,7 @@
     </option>
   </component>
   <component name="RunManager" selected="CMake Application.VirtuaLAP-Desktop">
-    <configuration name="VirtuaLAP-Desktop" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="VirtuaLAP" TARGET_NAME="VirtuaLAP-Desktop" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="VirtuaLAP" RUN_TARGET_NAME="VirtuaLAP-Desktop">
+    <configuration name="VirtuaLAP-Desktop" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://Data" PASS_PARENT_ENVS_2="true" PROJECT_NAME="VirtuaLAP" TARGET_NAME="VirtuaLAP-Desktop" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="VirtuaLAP" RUN_TARGET_NAME="VirtuaLAP-Desktop">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -317,14 +316,14 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.VirtuaLAP-Desktop" />
-      <item itemvalue="CMake Application.uninstall" />
-      <item itemvalue="CMake Application.glfw" />
-      <item itemvalue="CMake Application.genfiles" />
-      <item itemvalue="CMake Application.png_static" />
-      <item itemvalue="CMake Application.example" />
       <item itemvalue="CMake Application.example64" />
-      <item itemvalue="CMake Application.minigzip" />
+      <item itemvalue="CMake Application.example" />
+      <item itemvalue="CMake Application.genfiles" />
+      <item itemvalue="CMake Application.glfw" />
       <item itemvalue="CMake Application.minigzip64" />
+      <item itemvalue="CMake Application.minigzip" />
+      <item itemvalue="CMake Application.png_static" />
+      <item itemvalue="CMake Application.uninstall" />
       <item itemvalue="CMake Application.zlib" />
       <item itemvalue="CMake Application.zlibstatic" />
     </list>
@@ -343,7 +342,9 @@
       <workItem from="1557085072790" duration="1798000" />
       <workItem from="1557650600051" duration="204000" />
       <workItem from="1557650956563" duration="5123000" />
-      <workItem from="1557659508652" duration="13893000" />
+      <workItem from="1557659508652" duration="14739000" />
+      <workItem from="1558114244202" duration="599000" />
+      <workItem from="1558179386088" duration="4047000" />
     </task>
     <task id="LOCAL-00001" summary="Initial structure">
       <created>1556657618660</created>
@@ -359,17 +360,30 @@
       <option name="project" value="LOCAL" />
       <updated>1556657650385</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Initial structure cont.">
+      <created>1557694195402</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557694195402</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Initial structure cont.">
+      <created>1557694215272</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557694215272</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22153000" />
+    <option name="totallyTimeSpent" value="27645000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
-    <editor active="true" />
+    <frame x="3829" y="448" width="1942" height="1062" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18011929" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2457356" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -378,17 +392,17 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4998012" weight="0.32969603" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49662027" visible="true" weight="0.32969603" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49662027" weight="0.32969603" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5033797" side_tool="true" visible="true" weight="0.32969603" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4978678" weight="0.4582882" />
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4998012" weight="0.22291504" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.582505" weight="0.23694466" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41791046" side_tool="true" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4974155" weight="0.45752144" />
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.49860835" weight="0.22291504" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.58208954" visible="true" weight="0.33333334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -402,7 +416,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Initial structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial structure" />
+    <MESSAGE value="Initial structure cont." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial structure cont." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Desktop/.idea/.name" />
@@ -440,13 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Desktop/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="91" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Android/app/src/main/cpp/native-lib.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -461,23 +469,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-line="1" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="52" />
-          <folding>
-            <element signature="e#14#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.cpp" />
     <entry file="file://$PROJECT_DIR$/Desktop/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -485,23 +477,6 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Desktop/UI.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/ImageAnalysis.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -515,20 +490,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Global/Core.h">
+    <entry file="file://$PROJECT_DIR$/Global/TrackGeneration.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="e#14#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/ImageAnalysis.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -539,20 +504,6 @@
           <folding>
             <element signature="e#14#31#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/TrackGeneration.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -570,13 +521,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Global/ImageAnalysis.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/ImageAnalysis.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Desktop/PlatformInterfaces.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#14#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/Core.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding>
+            <element signature="e#14#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Global/Simulation.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        <state relative-caret-position="238">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Desktop/UI.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#118#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Desktop/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
         </state>
       </provider>
     </entry>

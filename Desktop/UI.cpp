@@ -3,6 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <png.h>
+#include <mutex>
+typedef std::recursive_mutex Mutex;
+#include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 
 #define RES_X 1280
@@ -74,7 +77,7 @@ void UI::Run(std::function<void ()> draw_callback) {
 void UI::loadIcon() { //Abridged from http://zarb.org/~gc/html/libpng.html
     char header[8];
     GLFWimage logo;
-    FILE *logofile = fopen("ic_launcher.png", "rb");
+    FILE *logofile = fopen("Logo.png", "rb");
     if (!logofile)
         throw std::runtime_error("Logo could not be opened for reading");
     fread(header, 1, 8, logofile);

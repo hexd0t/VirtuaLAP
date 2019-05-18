@@ -32,6 +32,6 @@ void Core::Step() {
     if (analysisResult.State == ImageAnalysis_Operating){ //ToDo: Add simulation state (scanning track, simulatin etc)
         _generator.Step(&analysisResult, &track);
     }
-    _simulation.Step();
+    _simulation.Step(&camImg, &analysisResult, &track);
 }
 

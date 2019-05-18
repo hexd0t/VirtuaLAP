@@ -10,7 +10,7 @@ include_directories(Dependencies/libpng)
 include_directories(Dependencies/libpngconf)
 
 FILE(GLOB GlobalCode ../Global/*.cpp) #Build all cpp files from the Global folder
-add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${GlobalCode} PlatformInterfaces.cpp)
+add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${GlobalCode})
 
 #Link against prebuilt OpenCV
 find_library(LIB_OPENCV NAMES opencv_world410d HINTS "Dependencies/OpenCV/lib")
@@ -35,6 +35,3 @@ set(SKIP_INSTALL_ALL ON)
 add_subdirectory(Dependencies/libpng EXCLUDE_FROM_ALL)
 target_link_libraries(VirtuaLAP-Desktop png_static)
 
-#copy resources
-file(COPY ../Android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
