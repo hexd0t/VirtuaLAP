@@ -2,17 +2,17 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="VirtuaLAP" targetName="example64" />
-      <config projectName="VirtuaLAP" targetName="zlib" />
-      <config projectName="VirtuaLAP" targetName="VirtuaLAP-Desktop" />
-      <config projectName="VirtuaLAP" targetName="minigzip" />
-      <config projectName="VirtuaLAP" targetName="glfw" />
+      <config projectName="VirtuaLAP" targetName="png_static" />
       <config projectName="VirtuaLAP" targetName="uninstall" />
       <config projectName="VirtuaLAP" targetName="genfiles" />
+      <config projectName="VirtuaLAP" targetName="example64" />
       <config projectName="VirtuaLAP" targetName="example" />
-      <config projectName="VirtuaLAP" targetName="minigzip64" />
-      <config projectName="VirtuaLAP" targetName="png_static" />
+      <config projectName="VirtuaLAP" targetName="minigzip" />
+      <config projectName="VirtuaLAP" targetName="zlib" />
+      <config projectName="VirtuaLAP" targetName="glfw" />
       <config projectName="VirtuaLAP" targetName="zlibstatic" />
+      <config projectName="VirtuaLAP" targetName="VirtuaLAP-Desktop" />
+      <config projectName="VirtuaLAP" targetName="minigzip64" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -22,21 +22,276 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a70179c-8050-475e-b9f4-8b36ebd0d31d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/default.fs.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/default.gs.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Desktop/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/zlib" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/zlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/zlib/zconf.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Desktop/UI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/UI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Global/Core.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Global/Core.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogoBG.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/calib3d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/calib3d.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/calib3d/calib3d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/calib3d/calib3d.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/calib3d/calib3d_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/calib3d/calib3d_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/affine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/affine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/base.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/base.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/bindings_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/bindings_utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/bufferpool.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/bufferpool.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/check.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/check.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/core_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/core_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda.inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda.inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/block.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/block.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/border_interpolate.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/border_interpolate.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/color.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/common.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/common.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/datamov_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/datamov_utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/color_detail.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/color_detail.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/reduce.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/reduce.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/reduce_key_val.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/reduce_key_val.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/transform_detail.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/transform_detail.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/type_traits_detail.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/type_traits_detail.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/vec_distance_detail.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/detail/vec_distance_detail.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/dynamic_smem.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/dynamic_smem.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/emulation.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/emulation.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/filters.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/filters.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/funcattrib.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/funcattrib.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/functional.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/functional.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/limits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/limits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/reduce.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/reduce.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/saturate_cast.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/saturate_cast.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/scan.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/scan.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/simd_functions.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/simd_functions.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/transform.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/transform.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/type_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/type_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/utility.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/utility.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/vec_distance.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/vec_distance.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/vec_math.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/vec_math.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/vec_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/vec_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/warp.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/warp.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/warp_reduce.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/warp_reduce.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/warp_shuffle.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda/warp_shuffle.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda_stream_accessor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda_stream_accessor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda_types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cuda_types.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cv_cpu_dispatch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cv_cpu_dispatch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cv_cpu_helper.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cv_cpu_helper.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvdef.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvdef.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvstd.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvstd.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvstd.inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvstd.inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvstd_wrapper.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/cvstd_wrapper.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/directx.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/directx.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/eigen.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/eigen.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/fast_math.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/fast_math.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/hal.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/hal.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_avx.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_avx.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_cpp.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_cpp.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_forward.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_forward.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_neon.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_neon.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_sse.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_sse.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_sse_em.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_sse_em.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_vsx.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/hal/intrin_vsx.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/mat.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/mat.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/mat.inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/mat.inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/matx.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/matx.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/neon_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/neon_utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/ocl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/ocl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/ocl_genbase.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/ocl_genbase.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/ocl_defs.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/ocl_defs.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/opencl_info.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/opencl_info.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/opencl_svm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/opencl_svm.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_clamdblas.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_clamdblas.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_clamdfft.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_clamdfft.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_core_wrappers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_core_wrappers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_gl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_gl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_gl_wrappers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/autogenerated/opencl_gl_wrappers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_clamdblas.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_clamdblas.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_clamdfft.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_clamdfft.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_core_wrappers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_core_wrappers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_gl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_gl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_gl_wrappers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_gl_wrappers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_svm_20.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_svm_20.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_svm_definitions.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_svm_definitions.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_svm_hsa_extension.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opencl/runtime/opencl_svm_hsa_extension.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opengl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/opengl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/operations.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/operations.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/optim.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/optim.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/ovx.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/ovx.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/persistence.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/persistence.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/saturate.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/saturate.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/softfloat.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/softfloat.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/sse_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/sse_utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/types.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/types_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/types_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utility.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utility.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/filesystem.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/filesystem.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/logger.defines.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/logger.defines.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/logger.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/logger.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/trace.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/utils/trace.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/va_intel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/va_intel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/version.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/version.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/vsx_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/core/vsx_utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/cvconfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/cvconfig.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/all_layers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/all_layers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/dict.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/dict.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/dnn.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/dnn.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/dnn.inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/dnn.inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/layer.details.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/layer.details.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/layer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/layer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/shape_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/shape_utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/utils/inference_engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/utils/inference_engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/version.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/dnn/version.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/features2d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/features2d.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/features2d/features2d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/features2d/features2d.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/features2d/hal/interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/features2d/hal/interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/all_indices.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/all_indices.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/allocator.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/allocator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/any.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/any.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/autotuned_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/autotuned_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/composite_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/composite_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/defines.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/defines.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/dist.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/dist.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/dummy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/dummy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/dynamic_bitset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/dynamic_bitset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/flann.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/flann.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/flann_base.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/flann_base.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/general.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/general.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/ground_truth.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/ground_truth.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/heap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/heap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/hierarchical_clustering_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/hierarchical_clustering_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/index_testing.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/index_testing.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/kdtree_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/kdtree_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/kdtree_single_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/kdtree_single_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/kmeans_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/kmeans_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/linear_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/linear_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/logger.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/logger.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/lsh_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/lsh_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/lsh_table.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/lsh_table.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/matrix.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/matrix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/miniflann.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/miniflann.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/nn_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/nn_index.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/object_factory.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/object_factory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/params.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/random.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/random.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/result_set.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/result_set.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/sampling.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/sampling.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/saving.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/saving.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/simplex_downhill.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/simplex_downhill.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/timer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/flann/timer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/cpu/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/cpu/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/cpu/gcpukernel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/cpu/gcpukernel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/cpu/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/cpu/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/gfluidbuffer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/gfluidbuffer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/gfluidkernel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/gfluidkernel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/fluid/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/garg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/garg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/garray.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/garray.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcall.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcall.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcommon.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcommon.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcompiled.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcompiled.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcompoundkernel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcompoundkernel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcomputation.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gcomputation.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gkernel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gkernel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gmat.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gmat.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gmetaarg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gmetaarg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gproto.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gproto.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gpu/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gpu/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gpu/ggpukernel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gpu/ggpukernel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gpu/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gpu/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gscalar.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gscalar.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gtype_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gtype_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gtyped.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/gtyped.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/ocl/core.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/ocl/core.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/ocl/goclkernel.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/ocl/goclkernel.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/ocl/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/ocl/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/opencv_includes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/opencv_includes.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/operators.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/operators.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/assert.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/assert.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/convert.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/convert.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/cvdefs.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/cvdefs.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/exports.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/exports.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/mat.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/mat.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/saturate.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/saturate.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/scalar.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/scalar.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/own/types.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/any.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/any.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/compiler_hints.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/compiler_hints.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/optional.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/optional.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/throw.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/throw.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/util.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/util.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/variant.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/gapi/util/variant.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/highgui.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/highgui.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/highgui/highgui.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/highgui/highgui.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/highgui/highgui_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/highgui/highgui_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/imgcodecs.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/imgcodecs.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/imgcodecs_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/imgcodecs_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/ios.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/ios.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/legacy/constants_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgcodecs/legacy/constants_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/detail/gcgraph.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/detail/gcgraph.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/hal/hal.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/hal/hal.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/hal/interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/hal/interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/imgproc.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/imgproc.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/imgproc_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/imgproc_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/types_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/imgproc/types_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/ml.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/ml.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/ml/ml.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/ml/ml.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/ml/ml.inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/ml/ml.inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/objdetect.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/objdetect.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/objdetect/detection_based_tracker.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/objdetect/detection_based_tracker.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/objdetect/objdetect.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/objdetect/objdetect.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/opencv.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/opencv.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/opencv_modules.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/opencv_modules.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo/cuda.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo/cuda.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo/legacy/constants_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo/legacy/constants_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo/photo.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/photo/photo.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/autocalib.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/autocalib.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/blenders.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/blenders.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/camera.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/camera.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/exposure_compensate.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/exposure_compensate.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/matchers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/matchers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/motion_estimators.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/motion_estimators.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/seam_finders.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/seam_finders.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/timelapsers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/timelapsers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/util.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/util.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/util_inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/util_inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/warpers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/warpers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/warpers_inl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/detail/warpers_inl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/warpers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/stitching/warpers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/background_segm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/background_segm.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/legacy/constants_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/legacy/constants_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/tracking.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/tracking.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/video.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/video/video.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/cap_ios.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/cap_ios.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/legacy/constants_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/legacy/constants_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/registry.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/registry.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/videoio.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/videoio.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/videoio_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/videoio/videoio_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/include/opencv2/world.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/lib/opencv_world410.lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desktop/Dependencies/OpenCV/lib/opencv_world410d.lib" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug-posix/" />
+    <ignored path="Desktop/Dependencies/zlib/zconf.h.included" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,15 +304,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Global/Core.h">
           <provider selected="true" editor-type-id="text-editor">
@@ -73,8 +319,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Desktop/UI.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="24" />
+            <state relative-caret-position="2363">
+              <caret line="139" column="33" selection-start-line="139" selection-start-column="33" selection-end-line="139" selection-end-column="33" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
                 <element signature="e#118#145#0" expanded="true" />
@@ -104,11 +350,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Desktop/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+            <state relative-caret-position="153">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Data/default.fs.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="41" column="53" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Data/default.gs.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2">
+              <caret line="6" column="86" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -121,15 +385,6 @@
               <folding>
                 <element signature="e#14#35#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Global/Simulation.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="95" selection-start-line="10" selection-start-column="95" selection-end-line="10" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -184,9 +439,11 @@
         <option value="$PROJECT_DIR$/Global/Simulation.cpp" />
         <option value="$PROJECT_DIR$/Desktop/PlatformInterfaces.cpp" />
         <option value="$PROJECT_DIR$/Global/Core.cpp" />
-        <option value="$PROJECT_DIR$/Desktop/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Desktop/UI.cpp" />
         <option value="$PROJECT_DIR$/Readme.md" />
+        <option value="$PROJECT_DIR$/Desktop/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Data/default.fs.glsl" />
+        <option value="$PROJECT_DIR$/Data/default.gs.glsl" />
       </list>
     </option>
   </component>
@@ -204,7 +461,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -215,13 +471,12 @@
             <path>
               <item name="VirtuaLAP" type="b2602c69:ProjectViewProjectNode" />
               <item name="VirtuaLAP" type="462c0819:PsiDirectoryNode" />
-              <item name="Desktop" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="VirtuaLAP" type="b2602c69:ProjectViewProjectNode" />
               <item name="VirtuaLAP" type="462c0819:PsiDirectoryNode" />
               <item name="Desktop" type="462c0819:PsiDirectoryNode" />
-              <item name="Dependencies" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="VirtuaLAP" type="b2602c69:ProjectViewProjectNode" />
@@ -232,6 +487,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -239,7 +495,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -259,7 +515,7 @@
     </option>
   </component>
   <component name="RunManager" selected="CMake Application.VirtuaLAP-Desktop">
-    <configuration name="VirtuaLAP-Desktop" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://Data" PASS_PARENT_ENVS_2="true" PROJECT_NAME="VirtuaLAP" TARGET_NAME="VirtuaLAP-Desktop" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="VirtuaLAP" RUN_TARGET_NAME="VirtuaLAP-Desktop">
+    <configuration name="VirtuaLAP-Desktop" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://../../Data" PASS_PARENT_ENVS_2="true" PROJECT_NAME="VirtuaLAP" TARGET_NAME="VirtuaLAP-Desktop" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="VirtuaLAP" RUN_TARGET_NAME="VirtuaLAP-Desktop">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -344,7 +600,8 @@
       <workItem from="1557650956563" duration="5123000" />
       <workItem from="1557659508652" duration="14739000" />
       <workItem from="1558114244202" duration="599000" />
-      <workItem from="1558179386088" duration="4047000" />
+      <workItem from="1558179386088" duration="7768000" />
+      <workItem from="1558197325044" duration="1094000" />
     </task>
     <task id="LOCAL-00001" summary="Initial structure">
       <created>1556657618660</created>
@@ -374,16 +631,23 @@
       <option name="project" value="LOCAL" />
       <updated>1557694215272</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Initial structure cont.">
+      <created>1558192749681</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1558192749681</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27645000" />
+    <option name="totallyTimeSpent" value="32460000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3829" y="448" width="1942" height="1062" extended-state="6" />
+    <frame x="3832" y="451" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2457356" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2468017" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -392,17 +656,17 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4998012" weight="0.32969603" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49662027" weight="0.32969603" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49573562" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49840087" visible="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41791046" side_tool="true" visible="true" weight="0.33333334" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4974155" weight="0.45752144" />
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.49860835" weight="0.22291504" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.58208954" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50373137" side_tool="true" visible="true" weight="0.45178765" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.49626866" visible="true" weight="0.45178765" />
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4978678" weight="0.531961" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.5794243" weight="0.33261105" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -418,6 +682,17 @@
     <MESSAGE value="Initial structure" />
     <MESSAGE value="Initial structure cont." />
     <option name="LAST_COMMIT_MESSAGE" value="Initial structure cont." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Desktop/UI.cpp</url>
+          <line>79</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Desktop/.idea/.name" />
@@ -521,6 +796,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Desktop/PlatformInterfaces.cpp" />
+    <entry file="file://$PROJECT_DIR$/Desktop/Dependencies/zlib/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-534">
+          <caret line="173" column="11" selection-start-line="173" selection-start-column="11" selection-end-line="173" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/Core.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding>
+            <element signature="e#14#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Desktop/UI.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="139" column="33" selection-start-line="139" selection-start-column="33" selection-end-line="139" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#118#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/Simulation.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#14#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Global/ImageAnalysis.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -535,68 +873,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Desktop/PlatformInterfaces.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/PlatformInterfaces.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#14#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/Core.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="e#14#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/Simulation.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Global/Core.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Desktop/UI.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#118#145#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Desktop/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+        <state relative-caret-position="153">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/default.fs.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="53" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/default.gs.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="6" column="86" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
         </state>
       </provider>
     </entry>

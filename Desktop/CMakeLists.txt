@@ -12,10 +12,11 @@ include_directories(Dependencies/libpngconf)
 FILE(GLOB GlobalCode ../Global/*.cpp) #Build all cpp files from the Global folder
 add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${GlobalCode})
 
-#Link against prebuilt OpenCV
-find_library(LIB_OPENCV NAMES opencv_world410d HINTS "Dependencies/OpenCV/lib")
-message(STATUS "find_library opencv_world410d: ${LIB_OPENCV}")
-target_link_libraries(VirtuaLAP-Desktop ${LIB_OPENCV})
+#Find & link against OpenCV
+option(OpenCV_STATIC ON)
+option(OpenCV_SHARED OFF)
+FIND_PACKAGE(OpenCV REQUIRED HINTS Dependencies/opencv)
+TARGET_LINK_LIBRARIES(VirtuaLAP-Desktop ${OpenCV_LIBS})
 
 #Build & link against GLFW
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
