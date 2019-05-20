@@ -33,6 +33,7 @@
 #    Windows pack specific options:
 #      - OpenCV_STATIC
 #      - OpenCV_CUDA
+#set(OpenCV_STATIC ON) #This is compiled statically
 
 if(CMAKE_VERSION VERSION_GREATER 2.6)
   get_property(OpenCV_LANGUAGES GLOBAL PROPERTY ENABLED_LANGUAGES)

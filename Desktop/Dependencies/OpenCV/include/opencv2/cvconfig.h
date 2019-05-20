@@ -2,7 +2,7 @@
 #define OPENCV_CVCONFIG_H_INCLUDED
 
 /* OpenCV compiled as static or dynamic libs */
-#define BUILD_SHARED_LIBS
+/* #undef BUILD_SHARED_LIBS */
 
 /* OpenCV intrinsics optimized code */
 #define CV_ENABLE_INTRINSICS
@@ -107,7 +107,7 @@
 #define HAVE_OPENEXR
 
 /* OpenGL support*/
-#define HAVE_OPENGL
+/* #undef HAVE_OPENGL */
 
 /* PNG codec */
 #define HAVE_PNG
