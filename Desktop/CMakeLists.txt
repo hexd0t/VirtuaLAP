@@ -10,7 +10,7 @@ include_directories(Dependencies/libpng)
 include_directories(Dependencies/libpngconf)
 
 FILE(GLOB GlobalCode ../Global/*.cpp) #Build all cpp files from the Global folder
-add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${GlobalCode})
+add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${GlobalCode} ../Global/nanovg/src/nanovg.c)
 
 #Find & link against OpenCV
 option(OpenCV_STATIC ON)

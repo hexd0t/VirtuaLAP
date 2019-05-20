@@ -10,4 +10,9 @@ IDEs:
  git clone --recurse-submodules -j8 https://github.com/hexd0t/VirtuaLAP.git
  ```
 
-
+Folder structure:
+VirtuaLAP (select this as project folder for CLion)
+- Android: Android specific code (select this as project folder for Android Studio
+- Desktop: Desktop specific code
+- Global: Platform independent code
+- Data: Platform independent resources (textures, model files, shader source)

@@ -2,8 +2,14 @@
 #include "glm/glm/gtc/matrix_transform.hpp"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <iomanip>
+
+#define NANOVG_GL3_IMPLEMENTATION
+#include "nanovg/src/nanovg_gl.h"
 
 Render::Render() :
+    _outputWidthPx(1280), _outputHeightPx(768),
     _aspectRatio(1.333f), _fov(45.f), _farDistance(5000)
 {
 
@@ -13,17 +19,25 @@ Render::~Render() {
 
 }
 
-void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* output) {
+void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
     glClearColor(0.8f, 0.1f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
+    glUseProgram(_shaderProgram);
+    glBindVertexArray(_vertexArray);
     glBindBuffer( GL_ARRAY_BUFFER, _carVBO );
     Vertex::SetLayout();
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
+
+    renderUI(camImage, imgAnalysis, track, deltaT, gameState);
 }
 
 void Render::FramebufferSizeChanged(int width, int height) {
+    _outputWidthPx = width;
+    _outputHeightPx = height;
     glViewport( 0, 0, width, height );
     _aspectRatio = static_cast<float>(width) / static_cast<float>(height);
     updateProjectionMatrix();
@@ -117,9 +131,9 @@ std::vector<char> Render::readShaderSource(const char *name) const {
     if (!shaderFile)
         throw std::runtime_error( "Cannot read Shader file" );
 
-    shaderFile.seekg( 0, shaderFile.end );
+    shaderFile.seekg( 0, std::ifstream::end );
     int shaderLength = static_cast<int>(shaderFile.tellg());
-    shaderFile.seekg( 0, shaderFile.beg );
+    shaderFile.seekg( 0, std::ifstream::beg );
 
     std::vector<char> shaderGLSL( shaderLength + 1 );
     memset( &shaderGLSL[0], 0, shaderLength + 1 );
@@ -133,5 +147,120 @@ std::vector<char> Render::readShaderSource(const char *name) const {
 void Render::Init() {
     initShaders();
     initVBOs();
+    initUI();
+}
+
+void Render::renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
+    nvgBeginFrame(vg, _outputWidthPx, _outputHeightPx, 1.0f);
+
+    //Image Analysis Debug Window
+    int iadw_x = 20;
+    int iadw_y = 20;
+    int iadw_w = 200;
+    int iadw_h = 400;
+    std::stringstream content;
+    content.setf(std::ios::fixed, std::ios::floatfield);
+    content.setf(std::ios::showpoint); //Always show float decimal place
+    content << "State: ";
+    switch (imgAnalysis->State) {
+        default:
+        case ImageAnalysis_Unknown:
+            content << "Unknown";
+            break;
+        case ImageAnalysis_Calibrating:
+            content << "Calibrating";
+            break;
+        case ImageAnalysis_Operating:
+            content << "Operating";
+            break;
+    }
+    content << std::endl << std::setprecision(1) <<
+            "Camera Location:" << std::endl <<
+            "X: " << std::setw(8) << imgAnalysis->CameraLocation.x << std::endl <<
+            "Y: " << std::setw(8) << imgAnalysis->CameraLocation.y << std::endl <<
+            "Z: " << std::setw(8) << imgAnalysis->CameraLocation.z << std::endl;
+    content << "Currently tracking markers:" << std::endl << std::setfill('0');
+    for(auto & MarkerLocation : imgAnalysis->MarkerLocations) {
+        content << std::setw(0) << MarkerLocation.first << std::endl;
+    }
+    drawUIwindow("ImageAnalysis Data", content.str().c_str(), iadw_x, iadw_y, iadw_w);
+
+    nvgEndFrame(vg);
+}
+
+void Render::drawUIcontent(const char *content, float x, float y, float w, float h) {
+    const int margin_left = 8;
+    const int margin_top = 40;
+    nvgFontSize(vg, 16.0f);
+    nvgFontFace(vg, "arial");
+    nvgTextAlign(vg,NVG_ALIGN_LEFT|NVG_ALIGN_TOP);
+
+    nvgFontBlur(vg,0);
+    nvgFillColor(vg, nvgRGBA(200,200,200,180));
+    nvgTextBox(vg, x + margin_left, y+margin_top, w - 2*margin_left, content, nullptr);
+}
+
+void Render::drawUIwindowBorder(const char *title, float x, float y, float w, float h) {
+    const float cornerRadius = 5.0f;
+    NVGpaint shadowPaint;
+    NVGpaint headerPaint;
+
+    nvgSave(vg);
+
+    // Window
+    nvgBeginPath(vg);
+    nvgRoundedRect(vg, x,y, w,h, cornerRadius);
+    nvgFillColor(vg, nvgRGBA(28,30,34,192));
+    nvgFill(vg);
+
+    // Drop shadow
+    shadowPaint = nvgBoxGradient(vg, x,y+2, w,h, cornerRadius*2, 10, nvgRGBA(0,0,0,128), nvgRGBA(0,0,0,0));
+    nvgBeginPath(vg);
+    nvgRect(vg, x-10,y-10, w+20,h+30);
+    nvgRoundedRect(vg, x,y, w,h, cornerRadius);
+    nvgPathWinding(vg, NVG_HOLE);
+    nvgFillPaint(vg, shadowPaint);
+    nvgFill(vg);
+
+    // Header
+    headerPaint = nvgLinearGradient(vg, x,y,x,y+15, nvgRGBA(255,255,255,8), nvgRGBA(0,0,0,16));
+    nvgBeginPath(vg);
+    nvgRoundedRect(vg, x+1,y+1, w-2,30, cornerRadius-1);
+    nvgFillPaint(vg, headerPaint);
+    nvgFill(vg);
+    nvgBeginPath(vg);
+    nvgMoveTo(vg, x+0.5f, y+0.5f+30);
+    nvgLineTo(vg, x+0.5f+w-1, y+0.5f+30);
+    nvgStrokeColor(vg, nvgRGBA(0,0,0,32));
+    nvgStroke(vg);
+
+    nvgFontSize(vg, 18.0f);
+    nvgFontFace(vg, "arial");
+    nvgTextAlign(vg,NVG_ALIGN_CENTER|NVG_ALIGN_MIDDLE);
+
+    nvgFontBlur(vg,2);
+    nvgFillColor(vg, nvgRGBA(0,0,0,128));
+    nvgText(vg, x+w/2,y+16+1, title, nullptr);
+
+    nvgFontBlur(vg,0);
+    nvgFillColor(vg, nvgRGBA(220,220,220,160));
+    nvgText(vg, x+w/2,y+16, title, nullptr);
+
+    nvgRestore(vg);
+}
+
+void Render::initUI() {
+    vg = nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);
+
+    //Note(AMü): Since these will never be unloaded, we don't store the handles returned
+    nvgCreateFont(vg, "arial", "C:/Windows/Fonts/arial.ttf");
+}
+
+void Render::drawUIwindow(const char *title, const char *content, float x, float y, float w) {
+    float contentbounds[4] = {0.f};
+    nvgTextBoxBounds(vg, x, y, w - 16, content, nullptr, contentbounds);
+    float windowheight = contentbounds[3] - contentbounds[1] + 48;
+    drawUIwindowBorder(title, x, y, w, windowheight);
+    drawUIcontent(content, x, y, w, windowheight);
 }
 

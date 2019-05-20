@@ -10,3 +10,6 @@
 [submodule "Desktop/Dependencies/zlib"]
 	path = Desktop/Dependencies/zlib
 	url = https://github.com/madler/zlib
+[submodule "Global/nanovg"]
+	path = Global/nanovg
+	url = https://github.com/memononen/nanovg.git

@@ -177,6 +177,8 @@ void APIENTRY oglDebug_callback(GLenum source, GLenum type, GLuint id, GLenum se
 {
     if (id == GL_INVALID_OPERATION)
         std::cerr <<  "OGL Error: " << std::string( message, message + length ) << std::endl;
-    else
-        std::cout <<  "OGL Info:" << std::string( message, message + length ) << std::endl;
+    else {
+        if(severity != GL_DEBUG_SEVERITY_NOTIFICATION)
+            std::cout << "OGL Info: " << std::string(message, message + length) << std::endl;
+    }
 }
