@@ -7,7 +7,7 @@
 #include "Core.h"
 
 Core::Core(CaptureImageFunc capImage)
-    : _analysis(), _generator(), _simulation(),
+    : _analysis(), _generator(), _simulation(),  _render(),
     captureImage(std::move(capImage))
 {
 
@@ -22,16 +22,26 @@ void Core::StartPipeline() {
     //Synced by single-producer, single-consumer queues
 }
 
-void Core::Step() {
-    CameraImageData camImg;
-    ImageAnalysisResult analysisResult;
-    TrackGeometry track;
+void Core::Step(float deltaT) {
+    CameraImageData camImg = {};
+    ImageAnalysisResult analysisResult = {};
+    TrackGeometry track = {};
+    GameState gameState =  {};
 
     captureImage(&camImg);
     _analysis.Step(&camImg, &analysisResult);
-    if (analysisResult.State == ImageAnalysis_Operating){ //ToDo: Add simulation state (scanning track, simulatin etc)
+    if (analysisResult.State == ImageAnalysis_Operating){ //ToDo: Add simulation state (scanning track, simulating etc)
         _generator.Step(&analysisResult, &track);
+        _simulation.Step(&analysisResult, &track, deltaT, &gameState);
     }
-    _simulation.Step(&camImg, &analysisResult, &track);
+    _render.Step(&camImg, &analysisResult, &track, deltaT, &gameState);
+}
+
+void Core::FramebufferSizeChanged(int width, int height) {
+    _render.FramebufferSizeChanged(width, height);
+}
+
+void Core::Init() {
+    _render.Init();
 }
 

@@ -3,12 +3,11 @@
 #include "PipelineInterfaces.h"
 
 class Simulation {
-private: //Class members
-
-public:  //Public methods
+private:
+public:
     Simulation();
     ~Simulation();
-    void Step(CameraImageData* camImage, ImageAnalysisResult* imgAnalysis, TrackGeometry* track); //Calculate a single frame and render it
-private: //Private methods
+
+    void Step(ImageAnalysisResult* imgAnalysis, TrackGeometry* track, float deltaT, GameState* output); //Calculate a single frame update
 
 };

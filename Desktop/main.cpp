@@ -2,18 +2,19 @@
 #include "../Global/Core.h"
 #include "UI.h"
 
-using std::placeholders::_1;
+using namespace std::placeholders;
 int main() {
     try {
         std::cout << "VirtuaLAP Desktop, starting..." << std::endl;
 
         UI ui;
-        ui.Init();
 
         Core app(std::bind(&UI::CaptureImage, &ui, _1));
+        ui.Init(std::bind(&Core::FramebufferSizeChanged, &app, _1, _2));
+        app.Init();
 
         app.StartPipeline();
-        ui.Run(std::bind(&Core::Step, &app));
+        ui.Run(std::bind(&Core::Step, &app, _1));
 
         ui.Deinit();
         return 0;

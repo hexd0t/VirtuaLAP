@@ -24,7 +24,8 @@ UI::UI() {
 UI::~UI() {
 }
 
-void UI::Init() {
+void UI::Init(std::function<void (int width, int height)> resizeCallback) {
+    _resizeCallback = resizeCallback;
     if (!glfwInit()) {
         throw std::runtime_error("GLFW Init failed!");
     }
@@ -55,9 +56,10 @@ void UI::createWindow() {
     }
     glViewport(0, 0, RES_X, RES_Y);
     loadIcon();
+    registerGLFWCallbacks();
 }
 
-void UI::Run(std::function<void ()> draw_callback) {
+void UI::Run(std::function<void (float dT)> draw_callback) {
     while (!glfwWindowShouldClose(_window))
     {
         // Check if any events have been activated (key pressed, mouse moved etc.) and call corresponding response functions
@@ -67,7 +69,7 @@ void UI::Run(std::function<void ()> draw_callback) {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        draw_callback();
+        draw_callback(16.f);
 
         // Swap the screen buffers
         glfwSwapBuffers(_window);
@@ -140,4 +142,41 @@ void UI::CaptureImage(CameraImageData *result) {
         memcpy(target, cvimg.ptr(y), result->Width*3);
         target += result->Width*3;
     }
+}
+
+void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void UI::ResizeEvent(GLFWwindow *window, int width, int height) {
+    _resizeCallback(width, height);
+}
+
+void UI::registerGLFWCallbacks() {
+    glfwSetWindowUserPointer(_window, this);
+    glfwSetKeyCallback(_window, &key_callback);
+    glfwSetFramebufferSizeCallback(_window, &fbresize_callback);
+
+    glEnable( GL_DEBUG_OUTPUT );
+    glDebugMessageCallback( &oglDebug_callback, this );
+}
+
+void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+    //Don't implement anything here, just pass the call through to the member function
+    UI* uiInstance = static_cast<UI*>(glfwGetWindowUserPointer( window ));
+    uiInstance->KeyEvent( window, key, scancode, action, mods );
+}
+
+void fbresize_callback(GLFWwindow *window, int width, int height) {
+    UI* uiInstance = static_cast<UI*>(glfwGetWindowUserPointer( window ));
+    uiInstance->ResizeEvent( window, width, height );
+}
+
+void APIENTRY oglDebug_callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
+{
+    if (id == GL_INVALID_OPERATION)
+        std::cerr <<  "OGL Error: " << std::string( message, message + length ) << std::endl;
+    else
+        std::cout <<  "OGL Info:" << std::string( message, message + length ) << std::endl;
 }

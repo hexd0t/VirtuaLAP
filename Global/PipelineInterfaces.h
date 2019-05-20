@@ -30,3 +30,7 @@ struct TrackGeometry {
     //ToDo(AMü): Should the generator already triangulate this?
     std::vector<TrackControlPoint> ControlPoints;
 };
+
+struct GameState {
+
+};

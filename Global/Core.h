@@ -3,6 +3,7 @@
 #include "ImageAnalysis.h"
 #include "TrackGeneration.h"
 #include "Simulation.h"
+#include "Render.h"
 
 #include "PlatformInterfaces.h"
 
@@ -15,6 +16,7 @@ private: //Class members
     ImageAnalysis _analysis;
     TrackGeneration _generator;
     Simulation _simulation;
+    Render _render;
 
     //Platform callbacks:
     CaptureImageFunc captureImage;
@@ -22,9 +24,12 @@ private: //Class members
 public:  //Public methods
     Core(CaptureImageFunc);
     ~Core();
+    void Init();
 
     void StartPipeline();
-    void Step();
+    void Step(float deltaT);
+
+    void FramebufferSizeChanged(int width, int height);
 private: //Private methods
 
 };
