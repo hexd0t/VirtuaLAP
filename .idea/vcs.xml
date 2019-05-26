@@ -6,5 +6,6 @@
     <mapping directory="$PROJECT_DIR$/Desktop/Dependencies/libpng" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Desktop/Dependencies/zlib" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Global/glm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Global/nanovg" vcs="Git" />
   </component>
 </project>
