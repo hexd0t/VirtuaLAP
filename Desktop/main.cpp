@@ -10,7 +10,8 @@ int main() {
         UI ui;
 
         Core app(std::bind(&UI::CaptureImage, &ui, _1));
-        ui.Init(std::bind(&Core::FramebufferSizeChanged, &app, _1, _2));
+        auto resizecallback = std::bind(&Core::FramebufferSizeChanged, &app, _1, _2);
+        ui.Init(resizecallback);
         app.Init();
 
         app.StartPipeline();

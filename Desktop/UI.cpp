@@ -46,6 +46,7 @@ void UI::createWindow() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE );
     _window = glfwCreateWindow(RES_X, RES_Y, "VirtuaLAP Desktop", nullptr, nullptr);
     if(!_window) {
         throw std::runtime_error("GLFW window creation failed!");
@@ -54,6 +55,7 @@ void UI::createWindow() {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         throw std::runtime_error("GLAD loader init failed!");
     }
+    glEnable( GL_DEBUG_OUTPUT_SYNCHRONOUS );
     glViewport(0, 0, RES_X, RES_Y);
     loadIcon();
     registerGLFWCallbacks();
@@ -178,7 +180,7 @@ void APIENTRY oglDebug_callback(GLenum source, GLenum type, GLuint id, GLenum se
     if (id == GL_INVALID_OPERATION)
         std::cerr <<  "OGL Error: " << std::string( message, message + length ) << std::endl;
     else {
-        if(severity != GL_DEBUG_SEVERITY_NOTIFICATION)
+        //if(severity != GL_DEBUG_SEVERITY_NOTIFICATION)
             std::cout << "OGL Info: " << std::string(message, message + length) << std::endl;
     }
 }
