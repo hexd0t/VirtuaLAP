@@ -66,10 +66,6 @@ void UI::Run(std::function<void (float dT)> draw_callback) {
         // Check if any events have been activated (key pressed, mouse moved etc.) and call corresponding response functions
         glfwPollEvents();
 
-        // Clear the colorbuffer
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
         draw_callback(16.f);
 
         // Swap the screen buffers

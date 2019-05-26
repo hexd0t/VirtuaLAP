@@ -25,7 +25,9 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Dependencies/glfw)
 target_link_libraries(VirtuaLAP-Desktop glfw)
 
-SET_TARGET_PROPERTIES(VirtuaLAP-Desktop PROPERTIES LINK_FLAGS -mconsole)
+if (WIN32)
+    SET_TARGET_PROPERTIES(VirtuaLAP-Desktop PROPERTIES LINK_FLAGS -mconsole)
+endif()
 
 #pnglib is included in opencv, so we don't need to link against it again
 #Build & link against libpng (including zlib)

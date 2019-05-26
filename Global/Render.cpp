@@ -28,23 +28,26 @@ void DebugPrint(const char* c) {
 }
 
 void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
-    glClearColor(0.8f, 0.1f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //glBindVertexArray(_vertexArray);
+    glBindVertexArray(_vertexArray);
 
     uploadCameraImage(camImage);
 
     _fsqShader.Apply();
     glBindBuffer(GL_ARRAY_BUFFER, _fsqVBO);
-    _fsqShader.SetDiffuseTexture(_cameraTexture);
+    static bool once = false;
+    if(!once) {
+        _fsqShader.SetDiffuseTexture(_cameraTexture);
+        once = true;
+    }
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-    _defaultShader.Apply();
+    /*_defaultShader.Apply();
     glBindBuffer(GL_ARRAY_BUFFER, _carVBO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3);*/
 
-    //renderUI(camImage, imgAnalysis, track, deltaT, gameState);
+    renderUI(camImage, imgAnalysis, track, deltaT, gameState);
 }
 
 void Render::FramebufferSizeChanged(int width, int height) {
@@ -67,7 +70,6 @@ void Render::initShaders() {
 void Render::initVBOs() {
     glGenVertexArrays(1, &_vertexArray); //Note(AMü): if we use multiple shaders, each might need their own
     glBindVertexArray(_vertexArray);
-    Vertex::SetLayout();
 
     std::vector<Vertex> fsqVertices;
     fsqVertices.emplace_back(-1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
@@ -89,10 +91,13 @@ unsigned int Render::createVertexBuffer(const std::vector<Vertex>& vertices) con
     glGenBuffers( 1, &vertexBuffer );
     glBindBuffer( GL_ARRAY_BUFFER, vertexBuffer );
     glBufferData( GL_ARRAY_BUFFER, vertices.size() * sizeof( Vertex ), &vertices[0], GL_STATIC_DRAW );
+    Vertex::SetLayout();
     return vertexBuffer;
 }
 
 void Render::Init() {
+    glClearStencil(0);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     initShaders();
     initVBOs();
@@ -103,11 +108,11 @@ void Render::Init() {
 void Render::renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
     nvgBeginFrame(_vg, _outputWidthPx, _outputHeightPx, 1.0f);
 
-    //renderUIimgAnalysisDebug(imgAnalysis);
-    nvgBeginPath(_vg);
+    renderUIimgAnalysisDebug(imgAnalysis);
+    /*nvgBeginPath(_vg);
     nvgRect(_vg, 100,100, 120,30);
     nvgFillColor(_vg, nvgRGBA(255,192,0,255));
-    nvgFill(_vg);
+    nvgFill(_vg);*/
 
     nvgEndFrame(_vg);
 }
@@ -183,7 +188,7 @@ void Render::initUI() {
 #if defined _WIN32
     nvgCreateFont(_vg, "arial", "C:/Windows/Fonts/arial.ttf");
 #else
-#error ToDo: implement non-Windows font loading
+    nvgCreateFont(_vg, "arial", "/usr/share/fonts/TTF/DejaVuSans.ttf");
 #endif
 }
 
