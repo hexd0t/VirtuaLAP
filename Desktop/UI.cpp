@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
-#include <png.h>
 #include <mutex>
 typedef std::recursive_mutex Mutex;
 #include <opencv2/core.hpp>
@@ -77,54 +76,14 @@ void UI::Run(std::function<void (float dT)> draw_callback) {
 }
 
 void UI::loadIcon() { //Abridged from http://zarb.org/~gc/html/libpng.html
-    char header[8];
     GLFWimage logo;
-    FILE *logofile = fopen("Logo.png", "rb");
-    if (!logofile)
-        throw std::runtime_error("Logo could not be opened for reading");
-    fread(header, 1, 8, logofile);
+    auto cvimg = cv::imread("Logo.png", cv::IMREAD_COLOR);
 
-    if(png_sig_cmp((png_const_bytep)header,0,8))
-        throw std::runtime_error("Icon file has invalid magic numbers");
-
-    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
-    png_infop info_ptr = png_create_info_struct(png_ptr);
-
-    if (setjmp(png_jmpbuf(png_ptr)))
-        throw std::runtime_error("Error during init_io");
-
-    png_init_io(png_ptr, logofile);
-    png_set_sig_bytes(png_ptr, 8);
-
-    png_read_info(png_ptr, info_ptr);
-
-    logo.width = png_get_image_width(png_ptr, info_ptr);
-    logo.height = png_get_image_height(png_ptr, info_ptr);
-
-    png_read_update_info(png_ptr, info_ptr);
-
-    if (setjmp(png_jmpbuf(png_ptr)))
-        throw std::runtime_error("Error during read_image");
-
-    auto row_pointers = new png_bytep[sizeof(png_bytep) * logo.height];
-    size_t datalen = 0;
-    for (int y=0; y < logo.height; y++) {
-        size_t rowlen = png_get_rowbytes(png_ptr, info_ptr);
-        row_pointers[y] = (png_bytep)datalen;
-        datalen += rowlen;
-    }
-    auto data = new png_byte[datalen]; //intentionally leak this, since we won't need it anymore
-    for(int y=0; y < logo.height; y++)
-        row_pointers[y] = data + (size_t)row_pointers[y];
-
-    png_read_image(png_ptr, row_pointers);
-    delete[] row_pointers;
-    fclose(logofile);
-
-    logo.pixels = data;
+    logo.height = cvimg.rows;
+    logo.width = cvimg.cols;
+    logo.pixels = cvimg.data;
 
     glfwSetWindowIcon(_window, 1, &logo); //copies the image data
-    delete[] data;
 }
 
 void UI::CaptureImage(CameraImageData *result) {
