@@ -72,10 +72,10 @@ void Render::initVBOs() {
     glBindVertexArray(_vertexArray);
 
     std::vector<Vertex> fsqVertices;
-    fsqVertices.emplace_back(-1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
-    fsqVertices.emplace_back(-1.f,  1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 1.f);
-    fsqVertices.emplace_back( 1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
-    fsqVertices.emplace_back( 1.f,  1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 1.f);
+    fsqVertices.emplace_back(-1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 1.f);
+    fsqVertices.emplace_back(-1.f,  1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
+    fsqVertices.emplace_back( 1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 1.f);
+    fsqVertices.emplace_back( 1.f,  1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
     std::vector<Vertex> carVertices;
     carVertices.emplace_back(-0.8f, -0.8f,  0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
     carVertices.emplace_back(  0.f,  0.8f,  0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
