@@ -23,6 +23,7 @@ private: //Class members
 
     //UI state
     NVGcontext* _vg;
+    bool _inVGFrame;
     glm::ivec3 _imgAnalysisDebugWindowLoc; //X, Y, Width
 
     //OpenGL handles
@@ -37,20 +38,19 @@ public:  //Public methods
     void Step(CameraImageData* camImage, ImageAnalysisResult* imgAnalysis, TrackGeometry* track, float deltaT, GameState* gameState); //Render a frame
 
     void FramebufferSizeChanged(int width, int height);
+    void DrawUIwindow(const char *title, const char *content, float x, float y, float w);
 private: //Private methods
     void updateProjectionMatrix();
 
     void initShaders(); //Load the shader sources and compile them for use
     void initVBOs(); //Load model geometry into Vertex Buffer Objects on the GPU
     void initTextures();
-    unsigned int createVertexBuffer(const std::vector<Vertex>& vertices) const;
 
     void uploadCameraImage(const CameraImageData* image);
 
     void renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState);
     void renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis);
     void initUI();
-    void drawUIwindow(const char *title, const char* content, float x, float y, float w);
     void drawUIwindowBorder(const char *title, float x, float y, float w, float h);
     void drawUIcontent(const char* content, float x, float y, float w, float h);
 };

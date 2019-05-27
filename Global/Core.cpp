@@ -45,3 +45,8 @@ void Core::Init() {
     _render.Init();
 }
 
+void Core::DrawUIWindow(const char *title, const char *content, float x, float y, float w) {
+    //ToDo: Maybe translate the coordinates to something not resolution dependant?
+    _render.DrawUIwindow(title, content, x, y, w);
+}
+

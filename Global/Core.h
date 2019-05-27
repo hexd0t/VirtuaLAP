@@ -29,6 +29,7 @@ public:  //Public methods
     void StartPipeline();
     void Step(float deltaT);
 
+    void DrawUIWindow(const char *title, const char *content, float x, float y, float w);
     void FramebufferSizeChanged(int width, int height);
 private: //Private methods
 

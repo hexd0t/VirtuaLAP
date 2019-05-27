@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "Render_OGL.h"
 
 #pragma pack(push, 1) //force memory layout to be exactly as described, so copying to GPU memory works
@@ -78,3 +79,13 @@ public:
     }
 };
 #pragma pack(pop) //Beendet pack
+
+template <class T>
+unsigned int CreateVertexBuffer(const std::vector<T>& vertices) {
+    GLuint vertexBuffer;
+    glGenBuffers( 1, &vertexBuffer );
+    glBindBuffer( GL_ARRAY_BUFFER, vertexBuffer );
+    glBufferData( GL_ARRAY_BUFFER, vertices.size() * sizeof( T ), &vertices[0], GL_STATIC_DRAW );
+    T::SetLayout();
+    return vertexBuffer;
+}

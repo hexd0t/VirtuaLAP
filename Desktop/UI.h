@@ -2,20 +2,27 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <functional>
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/imgcodecs.hpp>
 #include "../Global/PlatformInterfaces.h"
 
 class UI {
 private:
     bool _glfw_initialized = false;
     GLFWwindow* _window = nullptr;
-    std::function<void (int width, int height)> _resizeCallback;
+    ResizeFunc _resizeCallback;
+    DrawUIWindowFunc _drawUICallback;
+
+    int _currentDebugImage = 0;
+    cv::Mat _inputImg;
 public:
     UI();
     ~UI();
-    void Init(std::function<void (int width, int height)> resizeCallback);
+    void Init(ResizeFunc resizeCallback, DrawUIWindowFunc drawUIWindowCallback);
     void Deinit();
 
-    void Run(std::function<void (float dT)> draw_callback);
+    void Run(const std::function<void (float dT)>& draw_callback);
     void CaptureImage(CameraImageData* result);
 
     void KeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -24,6 +31,9 @@ private:
     void createWindow();
     void registerGLFWCallbacks();
     void loadIcon();
+
+    void drawDebugUI();
+    void cycleDebugImage(int direction);
 };
 
 //C Callbacks

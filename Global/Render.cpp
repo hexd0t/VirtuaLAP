@@ -14,7 +14,7 @@ Render::Render() :
     _outputWidthPx(1280), _outputHeightPx(768),
     _aspectRatio(1.333f), _fov(45.f), _farDistance(5000),
 
-    _vg(nullptr), _imgAnalysisDebugWindowLoc(20, 20, 200)
+    _vg(nullptr), _inVGFrame(false), _imgAnalysisDebugWindowLoc(20, 20, 200)
 {
 
 }
@@ -71,28 +71,19 @@ void Render::initVBOs() {
     glGenVertexArrays(1, &_vertexArray); //Note(AMü): if we use multiple shaders, each might need their own
     glBindVertexArray(_vertexArray);
 
-    std::vector<Vertex> fsqVertices;
-    fsqVertices.emplace_back(-1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 1.f);
-    fsqVertices.emplace_back(-1.f,  1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
-    fsqVertices.emplace_back( 1.f, -1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 1.f);
-    fsqVertices.emplace_back( 1.f,  1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
+    std::vector<UVVertex> fsqVertices;
+    fsqVertices.emplace_back(-1.f, -1.f, 0.f, 0.f, 1.f);
+    fsqVertices.emplace_back(-1.f,  1.f, 0.f, 0.f, 0.f);
+    fsqVertices.emplace_back( 1.f, -1.f, 0.f, 1.f, 1.f);
+    fsqVertices.emplace_back( 1.f,  1.f, 0.f, 1.f, 0.f);
     std::vector<Vertex> carVertices;
     carVertices.emplace_back(-0.8f, -0.8f,  0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
     carVertices.emplace_back(  0.f,  0.8f,  0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
     carVertices.emplace_back( 0.8f, -0.8f, 0.2f, 0.f, 0.f, 1.f, 0.f, 1.f);
 
     glBindVertexArray(_vertexArray);
-    _carVBO = createVertexBuffer(carVertices);
-    _fsqVBO = createVertexBuffer(fsqVertices);
-}
-
-unsigned int Render::createVertexBuffer(const std::vector<Vertex>& vertices) const {
-    GLuint vertexBuffer;
-    glGenBuffers( 1, &vertexBuffer );
-    glBindBuffer( GL_ARRAY_BUFFER, vertexBuffer );
-    glBufferData( GL_ARRAY_BUFFER, vertices.size() * sizeof( Vertex ), &vertices[0], GL_STATIC_DRAW );
-    Vertex::SetLayout();
-    return vertexBuffer;
+    _carVBO = CreateVertexBuffer(carVertices);
+    _fsqVBO = CreateVertexBuffer(fsqVertices);
 }
 
 void Render::Init() {
@@ -107,13 +98,11 @@ void Render::Init() {
 
 void Render::renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
     nvgBeginFrame(_vg, _outputWidthPx, _outputHeightPx, 1.0f);
+    _inVGFrame = true;
 
     renderUIimgAnalysisDebug(imgAnalysis);
-    /*nvgBeginPath(_vg);
-    nvgRect(_vg, 100,100, 120,30);
-    nvgFillColor(_vg, nvgRGBA(255,192,0,255));
-    nvgFill(_vg);*/
 
+    _inVGFrame = false;
     nvgEndFrame(_vg);
 }
 
@@ -192,13 +181,19 @@ void Render::initUI() {
 #endif
 }
 
-void Render::drawUIwindow(const char *title, const char *content, float x, float y, float w) {
+void Render::DrawUIwindow(const char *title, const char *content, float x, float y, float w) {
+    if(!_inVGFrame) //If the caller isn't providing a VG Frame, start one just for this element
+        nvgBeginFrame(_vg, _outputWidthPx, _outputHeightPx, 1.0f);
+
     float contentbounds[4] = {0.f};
     nvgTextBoxBounds(_vg, x, y, w - 2 * UI_WINDOW_CONTENTPADDING, content, nullptr, contentbounds);
     float windowheight = contentbounds[3] - contentbounds[1] + UI_WINDOW_CONTENTPADDING_TOP + UI_WINDOW_CONTENTPADDING;
     //std::cout << title << " " << x << " " << y << " " << w << " " << windowheight << std::endl;
     drawUIwindowBorder(title, x, y, w, windowheight);
     drawUIcontent(content, x, y, w, windowheight);
+
+    if(!_inVGFrame)
+        nvgEndFrame(_vg);
 }
 
 void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
@@ -228,7 +223,7 @@ void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
         content << std::setw(0) << MarkerLocation.first << std::endl;
     }
     auto loc = _imgAnalysisDebugWindowLoc;
-    drawUIwindow("ImageAnalysis Data", content.str().c_str(), loc.x, loc.y, loc.z);
+    DrawUIwindow("ImageAnalysis Data", content.str().c_str(), loc.x, loc.y, loc.z);
 }
 
 void Render::initTextures() {

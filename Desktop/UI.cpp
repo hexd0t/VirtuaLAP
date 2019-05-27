@@ -1,11 +1,11 @@
+#include <utility>
+
 #include "UI.h"
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
 #include <mutex>
 typedef std::recursive_mutex Mutex;
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
 
 #define RES_X 1280
 #define RES_Y 768
@@ -23,8 +23,9 @@ UI::UI() {
 UI::~UI() {
 }
 
-void UI::Init(std::function<void (int width, int height)> resizeCallback) {
-    _resizeCallback = resizeCallback;
+void UI::Init(ResizeFunc resizeCallback, DrawUIWindowFunc drawUIWindowCallback) {
+    _resizeCallback = std::move(resizeCallback);
+    _drawUICallback = std::move(drawUIWindowCallback);
     if (!glfwInit()) {
         throw std::runtime_error("GLFW Init failed!");
     }
@@ -32,6 +33,7 @@ void UI::Init(std::function<void (int width, int height)> resizeCallback) {
     glfwSetErrorCallback(glfw_error_callback);
 
     createWindow();
+    cycleDebugImage(0); //Load test0.jpg
 }
 
 void UI::Deinit() {
@@ -60,7 +62,7 @@ void UI::createWindow() {
     registerGLFWCallbacks();
 }
 
-void UI::Run(std::function<void (float dT)> draw_callback) {
+void UI::Run(const std::function<void (float dT)>& draw_callback) {
     while (!glfwWindowShouldClose(_window))
     {
         // Check if any events have been activated (key pressed, mouse moved etc.) and call corresponding response functions
@@ -68,12 +70,14 @@ void UI::Run(std::function<void (float dT)> draw_callback) {
 
         draw_callback(16.f);
 
+        drawDebugUI();
+
         // Swap the screen buffers
         glfwSwapBuffers(_window);
     }
 }
 
-void UI::loadIcon() { //Abridged from http://zarb.org/~gc/html/libpng.html
+void UI::loadIcon() {
     GLFWimage logo;
     auto cvimg = cv::imread("Logo.png", cv::IMREAD_COLOR);
 
@@ -85,25 +89,36 @@ void UI::loadIcon() { //Abridged from http://zarb.org/~gc/html/libpng.html
 }
 
 void UI::CaptureImage(CameraImageData *result) {
-    auto cvimg = cv::imread("test.jpg", cv::IMREAD_COLOR);
-    //ToDo(AMü): Improve testing by allowing to choose different pictures using keyboard input
-    // [See https://www.glfw.org/docs/latest/input_guide.html on how to get input]
 
-    result->Height = cvimg.rows;
-    result->Width = cvimg.cols;
+    result->Height = _inputImg.rows;
+    result->Width = _inputImg.cols;
     result->Data = new char[result->Height * result->Width * 3];
     //ToDo(AMü): Move buffer allocation to Global_Core, alloc only once
 
     auto target = result->Data;
     for(int y=0; y<result->Height; ++y) {
-        memcpy(target, cvimg.ptr(y), result->Width*3);
+        memcpy(target, _inputImg.ptr(y), result->Width*3);
         target += result->Width*3;
     }
 }
 
 void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    if (action == GLFW_PRESS) {
+        switch (key) {
+            case GLFW_KEY_ESCAPE:
+                glfwSetWindowShouldClose(window, GLFW_TRUE);
+                break;
+            case GLFW_KEY_F3:
+                cycleDebugImage(-1);
+                break;
+            case GLFW_KEY_F4:
+                cycleDebugImage(1);
+                break;
+            default:
+                break;
+        }
+
+    }
 }
 
 void UI::ResizeEvent(GLFWwindow *window, int width, int height) {
@@ -118,6 +133,24 @@ void UI::registerGLFWCallbacks() {
     glEnable( GL_DEBUG_OUTPUT );
     glDebugMessageCallback( &oglDebug_callback, this );
 }
+
+void UI::drawDebugUI() {
+    std::stringstream text;
+    text << "In: test" << _currentDebugImage << ".jpg [F3/F4]\n";
+
+    _drawUICallback("Debug", text.str().c_str(), 240, 20, 200);
+}
+
+void UI::cycleDebugImage(int direction) {
+    int newindex = _currentDebugImage + direction;
+    auto img = cv::imread("test"+std::to_string(newindex)+".jpg", cv::IMREAD_COLOR);
+    if(img.empty())
+        return; //File not readable
+    cv::cvtColor(img, _inputImg, cv::COLOR_BGR2RGB);
+    //_inputImg = img;
+    _currentDebugImage = newindex;
+}
+
 
 void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
     //Don't implement anything here, just pass the call through to the member function
