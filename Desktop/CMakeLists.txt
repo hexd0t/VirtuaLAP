@@ -15,7 +15,7 @@ add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${
 #Find & link against OpenCV
 set(OpenCV_STATIC ON)
 FIND_PACKAGE(OpenCV REQUIRED PATHS Dependencies/opencv)
-TARGET_LINK_LIBRARIES(VirtuaLAP-Desktop opencv_core opencv_imgproc opencv_imgcodecs opencv_aruco)
+TARGET_LINK_LIBRARIES(VirtuaLAP-Desktop opencv_core opencv_imgproc opencv_imgcodecs opencv_aruco)# opencv_highgui)
 
 #Build & link against GLFW
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -29,14 +29,4 @@ if (WIN32)
     SET_TARGET_PROPERTIES(VirtuaLAP-Desktop PROPERTIES LINK_FLAGS -mconsole)
 endif()
 
-#pnglib is included in opencv, so we don't need to link against it again
-#Build & link against libpng (including zlib)
-#add_subdirectory(Dependencies/zlib EXCLUDE_FROM_ALL)
-#SET(ZLIB_LIBRARY zlibstatic)
-#set(ZLIB_INCLUDE_DIR Dependencies/zlib)
-#set(PNG_SHARED OFF CACHE BOOL "" FORCE)
-#set(PNG_TESTS OFF CACHE BOOL "" FORCE)
-#set(SKIP_INSTALL_ALL ON)
-#add_subdirectory(Dependencies/libpng EXCLUDE_FROM_ALL)
-#target_link_libraries(VirtuaLAP-Desktop png_static)
 
