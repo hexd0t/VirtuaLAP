@@ -31,6 +31,10 @@ public:  //Public methods
 
     void DrawUIWindow(const char *title, const char *content, float x, float y, float w);
     void FramebufferSizeChanged(int width, int height);
+    void ToggleImgAnalysisDebug();
+    void SimulateImgAnalysis();
+
+    CoreCallbacks GetCallbacks();
 private: //Private methods
 
 };

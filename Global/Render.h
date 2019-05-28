@@ -27,7 +27,6 @@ private: //Class members
     glm::ivec3 _imgAnalysisDebugWindowLoc; //X, Y, Width
 
     //OpenGL handles
-    unsigned int _vertexArray;
     unsigned int _carVBO;
     unsigned int _fsqVBO;
     unsigned int _cameraTexture;

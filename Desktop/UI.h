@@ -11,15 +11,14 @@ class UI {
 private:
     bool _glfw_initialized = false;
     GLFWwindow* _window = nullptr;
-    ResizeFunc _resizeCallback;
-    DrawUIWindowFunc _drawUICallback;
+    CoreCallbacks _callbacks;
 
     int _currentDebugImage = 0;
     cv::Mat _inputImg;
 public:
     UI();
     ~UI();
-    void Init(ResizeFunc resizeCallback, DrawUIWindowFunc drawUIWindowCallback);
+    void Init(CoreCallbacks callbacks);
     void Deinit();
 
     void Run(const std::function<void (float dT)>& draw_callback);

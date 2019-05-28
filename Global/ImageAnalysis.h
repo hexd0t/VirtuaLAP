@@ -11,6 +11,7 @@ public:  //Public methods
     ~ImageAnalysis();
 
     void Step(const CameraImageData* cameraImage,ImageAnalysisResult* result);
+    void ChangeState(const ImageAnalysisState& newstate);
 private: //Private methods
 
 };

@@ -6,6 +6,8 @@
 
 #include "Core.h"
 
+using namespace std::placeholders;
+
 Core::Core(CaptureImageFunc capImage)
     : _analysis(), _generator(), _simulation(),  _render(),
     captureImage(std::move(capImage))
@@ -48,5 +50,22 @@ void Core::Init() {
 void Core::DrawUIWindow(const char *title, const char *content, float x, float y, float w) {
     //ToDo: Maybe translate the coordinates to something not resolution dependant?
     _render.DrawUIwindow(title, content, x, y, w);
+}
+
+void Core::ToggleImgAnalysisDebug() {
+    _analysis.ChangeState(ImageAnalysis_DebugOverlay);
+}
+
+void Core::SimulateImgAnalysis() {
+    _analysis.ChangeState(ImageAnalysis_Simulating);
+}
+
+CoreCallbacks Core::GetCallbacks() {
+    return CoreCallbacks{
+        std::bind(&Core::DrawUIWindow, this, _1, _2, _3, _4, _5),
+        std::bind(&Core::FramebufferSizeChanged, this, _1, _2),
+        std::bind(&Core::ToggleImgAnalysisDebug, this),
+        std::bind(&Core::SimulateImgAnalysis, this),
+    };
 }
 

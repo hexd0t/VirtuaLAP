@@ -23,9 +23,8 @@ UI::UI() {
 UI::~UI() {
 }
 
-void UI::Init(ResizeFunc resizeCallback, DrawUIWindowFunc drawUIWindowCallback) {
-    _resizeCallback = std::move(resizeCallback);
-    _drawUICallback = std::move(drawUIWindowCallback);
+void UI::Init(CoreCallbacks callbacks) {
+    _callbacks = std::move(callbacks);
     if (!glfwInit()) {
         throw std::runtime_error("GLFW Init failed!");
     }
@@ -108,6 +107,10 @@ void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mod
             case GLFW_KEY_ESCAPE:
                 glfwSetWindowShouldClose(window, GLFW_TRUE);
                 break;
+            case GLFW_KEY_F1:
+                _callbacks.SimulateImgAnalysis();
+            case GLFW_KEY_F2:
+                _callbacks.ToggleImgAnalysisDebug();
             case GLFW_KEY_F3:
                 cycleDebugImage(-1);
                 break;
@@ -122,7 +125,7 @@ void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mod
 }
 
 void UI::ResizeEvent(GLFWwindow *window, int width, int height) {
-    _resizeCallback(width, height);
+    _callbacks.Resize(width, height);
 }
 
 void UI::registerGLFWCallbacks() {
@@ -138,7 +141,7 @@ void UI::drawDebugUI() {
     std::stringstream text;
     text << "In: test" << _currentDebugImage << ".jpg [F3/F4]\n";
 
-    _drawUICallback("Debug", text.str().c_str(), 240, 20, 200);
+    _callbacks.DrawUIWindow("Debug", text.str().c_str(), 240, 20, 200);
 }
 
 void UI::cycleDebugImage(int direction) {
@@ -168,7 +171,7 @@ void APIENTRY oglDebug_callback(GLenum source, GLenum type, GLuint id, GLenum se
     if (id == GL_INVALID_OPERATION)
         std::cerr <<  "OGL Error: " << std::string( message, message + length ) << std::endl;
     else {
-        //if(severity != GL_DEBUG_SEVERITY_NOTIFICATION)
+        if(severity != GL_DEBUG_SEVERITY_NOTIFICATION)
             std::cout << "OGL Info: " << std::string(message, message + length) << std::endl;
     }
 }

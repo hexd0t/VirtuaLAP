@@ -12,7 +12,7 @@
 
 Render::Render() :
     _outputWidthPx(1280), _outputHeightPx(768),
-    _aspectRatio(1.333f), _fov(45.f), _farDistance(5000),
+    _aspectRatio(1.333f), _fov(80.f), _farDistance(200000),
 
     _vg(nullptr), _inVGFrame(false), _imgAnalysisDebugWindowLoc(20, 20, 200)
 {
@@ -30,22 +30,23 @@ void DebugPrint(const char* c) {
 void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
     glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glBindVertexArray(_vertexArray);
-
     uploadCameraImage(camImage);
 
     _fsqShader.Apply();
     glBindBuffer(GL_ARRAY_BUFFER, _fsqVBO);
-    static bool once = false;
-    if(!once) {
-        _fsqShader.SetDiffuseTexture(_cameraTexture);
-        once = true;
-    }
+    _fsqShader.SetDiffuseTexture(_cameraTexture);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-    /*_defaultShader.Apply();
+    _defaultShader.Apply();
+    _defaultShader.UpdateView(glm::lookAt(
+            glm::vec3(0,-1,0),
+            glm::vec3(0,0,0),
+            glm::vec3(0,0,1)
+            ));
+
+    _defaultShader.UpdateModel(glm::mat4(1.0f));
     glBindBuffer(GL_ARRAY_BUFFER, _carVBO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);*/
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 
     renderUI(camImage, imgAnalysis, track, deltaT, gameState);
 }
@@ -59,17 +60,16 @@ void Render::FramebufferSizeChanged(int width, int height) {
 }
 
 void Render::updateProjectionMatrix() {
-    glm::mat4 proj = glm::perspective( _fov, _aspectRatio, 0.1f, _farDistance );
+    _defaultShader.UpdateProj(glm::perspective( _fov, _aspectRatio, 0.1f, _farDistance ));
 }
 
 void Render::initShaders() {
     _defaultShader.Init("default");
     _fsqShader.Init("fsq");
+    updateProjectionMatrix();
 }
 
 void Render::initVBOs() {
-    glGenVertexArrays(1, &_vertexArray); //Note(AMü): if we use multiple shaders, each might need their own
-    glBindVertexArray(_vertexArray);
 
     std::vector<UVVertex> fsqVertices;
     fsqVertices.emplace_back(-1.f, -1.f, 0.f, 0.f, 1.f);
@@ -79,10 +79,16 @@ void Render::initVBOs() {
     std::vector<Vertex> carVertices;
     carVertices.emplace_back(-0.8f, -0.8f,  0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
     carVertices.emplace_back(  0.f,  0.8f,  0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
-    carVertices.emplace_back( 0.8f, -0.8f, 0.2f, 0.f, 0.f, 1.f, 0.f, 1.f);
+    carVertices.emplace_back( 0.8f, -0.8f,  0.f, 0.f, 0.f, 1.f, 0.f, 1.f);
 
-    glBindVertexArray(_vertexArray);
+
+    carVertices.emplace_back(-0.8f, 0.f, -0.8f, 0.f, 0.f, 1.f, 0.f, 0.f);
+    carVertices.emplace_back(  0.f, 0.f,  0.8f, 0.f, 0.f, 1.f, 1.f, 0.f);
+    carVertices.emplace_back( 0.8f, 0.f, -0.8f, 0.f, 0.f, 1.f, 0.f, 1.f);
+
+    _defaultShader.Apply();
     _carVBO = CreateVertexBuffer(carVertices);
+    _fsqShader.Apply();
     _fsqVBO = CreateVertexBuffer(fsqVertices);
 }
 
@@ -182,7 +188,7 @@ void Render::initUI() {
 }
 
 void Render::DrawUIwindow(const char *title, const char *content, float x, float y, float w) {
-    if(!_inVGFrame) //If the caller isn't providing a VG Frame, start one just for this element
+    if(!_inVGFrame) //If the caller isn't providing a VG Frame, start one juAn overview is supposed to give an informational overview of the available options, their respective advantages and disadvantages. If it doesn't do that at all, I don't see how it could be a good overview.st for this element
         nvgBeginFrame(_vg, _outputWidthPx, _outputHeightPx, 1.0f);
 
     float contentbounds[4] = {0.f};
@@ -201,8 +207,9 @@ void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
     content.setf(std::ios::fixed, std::ios::floatfield);
     content.setf(std::ios::showpoint); //Always show float decimal place
     content << "State: ";
-    switch (imgAnalysis->State) {
+    switch (imgAnalysis->State & 0xFF) {
         default:
+            content << std::hex << imgAnalysis->State << "!";
         case ImageAnalysis_Unknown:
             content << "Unknown";
             break;
@@ -212,7 +219,12 @@ void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
         case ImageAnalysis_Operating:
             content << "Operating";
             break;
+        case ImageAnalysis_Simulating:
+            content << "Simulating";
+            break;
     }
+    if(imgAnalysis->State & ImageAnalysis_DebugOverlay)
+        content << " (Debug)";
     content << std::endl << std::setprecision(1) <<
             "Camera Location:" << std::endl <<
             "X: " << std::setw(8) << imgAnalysis->CameraLocation.x << std::endl <<

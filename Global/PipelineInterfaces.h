@@ -10,13 +10,18 @@ struct CameraImageData {
 };
 
 enum ImageAnalysisState {
-    ImageAnalysis_Unknown = 0,
-    ImageAnalysis_Calibrating = 1,
-    ImageAnalysis_Operating = 2
+    ImageAnalysis_Unknown       = 0x0000,
+    ImageAnalysis_Calibrating   = 0x0001,
+    ImageAnalysis_Operating     = 0x0002,
+
+    ImageAnalysis_Simulating    = 0x0010,
+    ImageAnalysis_DebugOverlay  = 0x1000
 };
 struct ImageAnalysisResult {
     ImageAnalysisState State;
     glm::vec3 CameraLocation;
+    glm::vec3 CameraLookDirection;
+    glm::vec3 CameraUp;
     std::vector<std::pair<int, glm::vec3>> MarkerLocations;
 };
 
