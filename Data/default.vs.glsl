@@ -5,7 +5,7 @@ layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec2 inTexcoord;
 
 // out vec4 gl_Position //position is a required output, so we don't need to define it
-out vec3 texcoord;
+out vec2 texcoord;
 /*out vec3 position_world;//world space
 out vec3 normal_cam;	//camera space
 out vec3 eyedir_cam;	//vector towards the camera in camera space
@@ -30,9 +30,7 @@ void main() {
     /*eyedir_cam = vec3(0,0,0) - position_cam.xyz;
     lightdir_cam = (view * vec4( lightPos, 1.0f ) ).xyz - position_cam.xyz;*/
 
-    //texcoord = vec3(inTexcoord, 0)
-
-    texcoord = position_screen.xyz + vec3(0,0,0.5f);
-    //gl_Position = position_screen + vec4(0,0,0.5f, 0);
+    texcoord = inTexcoord;
+    gl_Position = position_screen;
 
 }

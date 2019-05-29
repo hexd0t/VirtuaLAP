@@ -12,7 +12,7 @@
 
 Render::Render() :
     _outputWidthPx(1280), _outputHeightPx(768),
-    _aspectRatio(1.333f), _fov(80.f), _farDistance(200000),
+    _aspectRatio(1.333f), _fov(3.141f*0.5f), _farDistance(20000),
 
     _vg(nullptr), _inVGFrame(false), _imgAnalysisDebugWindowLoc(20, 20, 200)
 {
@@ -32,21 +32,38 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
 
     uploadCameraImage(camImage);
 
+    glDisable(GL_DEPTH_TEST);
     _fsqShader.Apply();
     glBindBuffer(GL_ARRAY_BUFFER, _fsqVBO);
     _fsqShader.SetDiffuseTexture(_cameraTexture);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    //glDisable(GL_CULL_FACE);
+    glFrontFace(GL_CCW);
     _defaultShader.Apply();
     _defaultShader.UpdateView(glm::lookAt(
-            glm::vec3(0,-1,0),
-            glm::vec3(0,0,0),
-            glm::vec3(0,0,1)
+            imgAnalysis->CameraLocation,
+            imgAnalysis->CameraLocation + imgAnalysis->CameraLookDirection,
+            imgAnalysis->CameraUp
             ));
 
     _defaultShader.UpdateModel(glm::mat4(1.0f));
     glBindBuffer(GL_ARRAY_BUFFER, _carVBO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    auto points = _track.Triangulate(track);
+    for(auto& point : points) {
+        _defaultShader.UpdateModel(
+                glm::translate(glm::mat4(1.0f), point));
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
+        glDrawArrays(GL_TRIANGLE_STRIP, 8, 4);
+        glDrawArrays(GL_TRIANGLE_STRIP, 12, 4);
+        glDrawArrays(GL_TRIANGLE_STRIP, 16, 4);
+        glDrawArrays(GL_TRIANGLE_STRIP, 20, 4);
+    }
+
 
     renderUI(camImage, imgAnalysis, track, deltaT, gameState);
 }
@@ -77,14 +94,37 @@ void Render::initVBOs() {
     fsqVertices.emplace_back( 1.f, -1.f, 0.f, 1.f, 1.f);
     fsqVertices.emplace_back( 1.f,  1.f, 0.f, 1.f, 0.f);
     std::vector<Vertex> carVertices;
-    carVertices.emplace_back(-0.8f, -0.8f,  0.f, 0.f, 0.f, 1.f, 0.f, 0.f);
-    carVertices.emplace_back(  0.f,  0.8f,  0.f, 0.f, 0.f, 1.f, 1.f, 0.f);
-    carVertices.emplace_back( 0.8f, -0.8f,  0.f, 0.f, 0.f, 1.f, 0.f, 1.f);
+    //Top:
+    carVertices.emplace_back( 20.f, -20.f,  20.f, 0.f, 0.f, 1.f, 1.f, 0.f);
+    carVertices.emplace_back( 20.f,  20.f,  20.f, 0.f, 0.f, 1.f, 1.f, 1.f);
+    carVertices.emplace_back(-20.f, -20.f,  20.f, 0.f, 0.f, 1.f, 0.f, 0.f);
+    carVertices.emplace_back(-20.f,  20.f,  20.f, 0.f, 0.f, 1.f, 0.f, 1.f);
+    //Front:
+    carVertices.emplace_back( 20.f, -20.f,  20.f, 1.f, 0.f, 0.f, 1.f, 0.f);
+    carVertices.emplace_back( 20.f, -20.f, -20.f, 1.f, 0.f, 0.f, 0.f, 0.f);
+    carVertices.emplace_back( 20.f,  20.f,  20.f, 1.f, 0.f, 0.f, 1.f, 1.f);
+    carVertices.emplace_back( 20.f,  20.f, -20.f, 1.f, 0.f, 0.f, 0.f, 1.f);
+    //Right:
+    carVertices.emplace_back( 20.f,  20.f,  20.f, 0.f, 1.f, 0.f, 1.f, 0.f);
+    carVertices.emplace_back( 20.f,  20.f, -20.f, 0.f, 1.f, 0.f, 0.f, 0.f);
+    carVertices.emplace_back(-20.f,  20.f,  20.f, 0.f, 1.f, 0.f, 1.f, 1.f);
+    carVertices.emplace_back(-20.f,  20.f, -20.f, 0.f, 1.f, 0.f, 0.f, 1.f);
+    //Back:
+    carVertices.emplace_back(-20.f, -20.f,  20.f, -1.f, 0.f, 0.f, 1.f, 0.f);
+    carVertices.emplace_back(-20.f,  20.f,  20.f, -1.f, 0.f, 0.f, 1.f, 1.f);
+    carVertices.emplace_back(-20.f, -20.f, -20.f, -1.f, 0.f, 0.f, 0.f, 0.f);
+    carVertices.emplace_back(-20.f,  20.f, -20.f, -1.f, 0.f, 0.f, 0.f, 1.f);
+    //Bottom
+    carVertices.emplace_back( 20.f, -20.f, -20.f, 0.f, 0.f, -1.f, 1.f, 0.f);
+    carVertices.emplace_back(-20.f, -20.f, -20.f, 0.f, 0.f, -1.f, 0.f, 0.f);
+    carVertices.emplace_back( 20.f,  20.f, -20.f, 0.f, 0.f, -1.f, 1.f, 1.f);
+    carVertices.emplace_back(-20.f,  20.f, -20.f, 0.f, 0.f, -1.f, 0.f, 1.f);
+    //Left:
+    carVertices.emplace_back( 20.f, -20.f,  20.f, 0.f, -1.f, 0.f, 1.f, 0.f);
+    carVertices.emplace_back(-20.f, -20.f,  20.f, 0.f, -1.f, 0.f, 1.f, 1.f);
+    carVertices.emplace_back( 20.f, -20.f, -20.f, 0.f, -1.f, 0.f, 0.f, 0.f);
+    carVertices.emplace_back(-20.f, -20.f, -20.f, 0.f, -1.f, 0.f, 0.f, 1.f);
 
-
-    carVertices.emplace_back(-0.8f, 0.f, -0.8f, 0.f, 0.f, 1.f, 0.f, 0.f);
-    carVertices.emplace_back(  0.f, 0.f,  0.8f, 0.f, 0.f, 1.f, 1.f, 0.f);
-    carVertices.emplace_back( 0.8f, 0.f, -0.8f, 0.f, 0.f, 1.f, 0.f, 1.f);
 
     _defaultShader.Apply();
     _carVBO = CreateVertexBuffer(carVertices);
@@ -230,9 +270,9 @@ void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
             "X: " << std::setw(8) << imgAnalysis->CameraLocation.x << std::endl <<
             "Y: " << std::setw(8) << imgAnalysis->CameraLocation.y << std::endl <<
             "Z: " << std::setw(8) << imgAnalysis->CameraLocation.z << std::endl;
-    content << "Currently tracking markers:" << std::endl << std::setfill('0');
-    for(auto & MarkerLocation : imgAnalysis->MarkerLocations) {
-        content << std::setw(0) << MarkerLocation.first << std::endl;
+    content << "Currently known markers:" << std::endl << std::setfill('0');
+    for(auto & MarkerLocation : imgAnalysis->Markers) {
+        content << std::setw(0) << MarkerLocation.id << std::endl;
     }
     auto loc = _imgAnalysisDebugWindowLoc;
     DrawUIwindow("ImageAnalysis Data", content.str().c_str(), loc.x, loc.y, loc.z);

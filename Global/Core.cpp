@@ -32,7 +32,7 @@ void Core::Step(float deltaT) {
 
     captureImage(&camImg);
     _analysis.Step(&camImg, &analysisResult);
-    if (analysisResult.State == ImageAnalysis_Operating){ //ToDo: Add simulation state (scanning track, simulating etc)
+    if (analysisResult.State & ImageAnalysis_Operating) {
         _generator.Step(&analysisResult, &track);
         _simulation.Step(&analysisResult, &track, deltaT, &gameState);
     }

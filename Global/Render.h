@@ -8,9 +8,12 @@
 #include "Render_Shader.h"
 
 #include "nanovg/src/nanovg.h"
+#include "Render_BSpline.h"
 
 class Render {
 private: //Class members
+    BSpline _track;
+
     //Render state
     int _outputWidthPx;
     int _outputHeightPx;

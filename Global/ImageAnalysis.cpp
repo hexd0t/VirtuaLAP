@@ -51,9 +51,22 @@ void ImageAnalysis::Step(const CameraImageData *cameraImage, ImageAnalysisResult
                     time_point_cast<milliseconds>(std::chrono::system_clock::now()).time_since_epoch() ).count() % (3141 * 2);
 
             auto rotate = glm::rotate(glm::mat4(1.0f), clock_ms*0.001f, glm::vec3(0,0,1));
-            result->CameraLocation = rotate * glm::vec4(1000, 0, 2000, 1);
+            result->CameraLocation = rotate * glm::vec4(1000, 0, 1000, 1);
             result->CameraLookDirection = glm::normalize(-result->CameraLocation);
             result->CameraUp = glm::vec3(0, 0, 1);
+
+            result->Markers.emplace_back(MarkerInfo {
+                    0, //Marker 0 always should have these properties, since it defines the origin
+                    glm::vec3(0,0,0),
+                    glm::vec3(0,1,0),
+                    glm::vec3(0,0,1)
+            });
+            result->Markers.emplace_back(MarkerInfo {
+                    1,
+                    glm::vec3(300,0,0),
+                    glm::vec3(0,-1,0),
+                    glm::vec3(0,0,1)
+            });
             break;
         }
         case ImageAnalysis_Unknown:

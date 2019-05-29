@@ -140,6 +140,8 @@ void UI::registerGLFWCallbacks() {
 void UI::drawDebugUI() {
     std::stringstream text;
     text << "In: test" << _currentDebugImage << ".jpg [F3/F4]\n";
+    text << "F1: Sim ImgAnal.\n";
+    text << "F2: Debug ImgAnal.\n";
 
     _callbacks.DrawUIWindow("Debug", text.str().c_str(), 240, 20, 200);
 }

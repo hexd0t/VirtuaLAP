@@ -1,7 +1,7 @@
 #version 330
 
 // Properties the Vertex Shader supplied
-in vec3 texcoord;				//Texture coordinates
+in vec2 texcoord;				//Texture coordinates
 /*in vec3 position_world;			//Position in world space coordinates
 in vec3 normal_cam;				//Normal in Camera space
 in vec3 eyedir_cam;				//Vector towards the Camera in Camera space
@@ -21,7 +21,7 @@ uniform vec3 sunColor;*/
 
 void main(void) {
     //endColor = vec4(1.0f, 1.0f, 0.f, 1.0f);
-    vec4 diffuse = vec4(texcoord.rgb, 1.0f);//texture( diffuseTextureSampler, texcoord );
+    vec4 diffuse = vec4(texcoord.rg, 0.0f, 1.0f);//texture( diffuseTextureSampler, texcoord );
     /*vec3 ambient = ambientLight * diffuse.rgb;
 
     float lightDistance = length( lightPos - position_world );
