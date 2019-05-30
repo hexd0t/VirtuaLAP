@@ -33,6 +33,7 @@ struct ImageAnalysisResult {
 };
 
 struct TrackControlPoint {
+    bool Important; //Does the track have to go trough this point?
     glm::vec3 Location;
     glm::vec3 Normal;
     //ToDo(AMü): Additional info, like pavement type

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Render_BSpline.h"
 
-constexpr unsigned int degree = 2;
+constexpr unsigned int degree = 3;
 constexpr float epsilon = 0.0001f;
 
 std::vector<glm::vec3> BSpline::Triangulate(TrackGeometry *track) {
@@ -10,14 +10,21 @@ std::vector<glm::vec3> BSpline::Triangulate(TrackGeometry *track) {
     unsigned int cpcount = track->ControlPoints.size();
     unsigned int knotcount = cpcount + degree + 1;
     std::vector<float> knots(knotcount, 0.f);
-    for(size_t i = 0; i<=cpcount-degree; ++i) {
-        knots[degree + i] = i;
+
+    int repcount = 0;
+    float curknot = 1.f;
+    for (int i = degree+1; i < knotcount-1; ++i) {
+        knots[i] = curknot;
+        ++repcount;
+        if(repcount == degree) {
+            repcount = 0;
+            curknot += 1.f;
+        }
     }
-    for(size_t i = 0; i < degree; ++i)
-        knots[degree+cpcount-i] = knots[cpcount];
+    knots[knotcount-1] = knots[knotcount-2];//Last knot hat to be repeated degree + 1 times
 
     std::vector<glm::vec3> result;
-    for(float u = 0.f; u < 5.99f; u+=0.1f) {
+    for(float u = 0.f; u < knots[knotcount-1]; u+=0.1f) {
         result.push_back(bsplinePoint(u, knots, track));
     }
 
