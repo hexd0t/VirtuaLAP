@@ -3,7 +3,7 @@
 #include "Render_BSpline.h"
 
 constexpr unsigned int TRACKDEGREE = 3;
-const float MAXATANGENTANGLE = cosf(5.f / 180.f * 3.141f);
+const float MAXATANGENTANGLE = cosf(10.f / 180.f * 3.141f);
 constexpr float epsilon = 0.0001f;
 constexpr float MAXUDELTA = 0.25f;
 
@@ -26,10 +26,10 @@ std::vector<glm::vec3> BSpline::Triangulate(TrackGeometry *track) {
     }
     knots[knotcount-1] = knots[knotcount-2];//Last knot hat to be repeated degree + 1 times
 
-    for(auto &k : knots) {
+    /*for(auto &k : knots) {
         std::cout << k << " ";
     }
-    std::cout << std::endl;
+    std::cout << std::endl;*/
 
     float prevU = 0.f;
     glm::vec3 prevTangent = bsplineTangent(prevU, TRACKDEGREE, knots, track);
@@ -40,6 +40,7 @@ std::vector<glm::vec3> BSpline::Triangulate(TrackGeometry *track) {
 
     for(float u = prevU + MAXUDELTA; u <= lastU; ) {
         glm::vec3 tangent = bsplineTangent(u, TRACKDEGREE, knots, track);
+
         //std::cout << std::setw(8) << tangent.x << "," << std::setw(8) << tangent.y << "," << std::setw(8) << tangent.z << std::endl;
         evaluateUntilTangent(prevU, prevTangent, u, tangent, points,
                 knots, track, MAXATANGENTANGLE);/**/
@@ -97,40 +98,36 @@ glm::vec3 BSpline::bsplinePoint(float u, int degree, const std::vector<float> &k
 glm::vec3 BSpline::bsplineTangent(float u, int degree, const std::vector<float> &knots, TrackGeometry *cps) const {
     glm::vec3 result(0.f, 0.f, 0.f);
     auto& points = cps->ControlPoints;
-    for(int i = 0; i < points.size(); ++i) {//ToDo: only calculate contributing weights
-        result += bsplineTangentBase(i, degree, u, knots) * points[i].Location;
+    if(u >= *knots.rbegin()) //Fix numerical instability with last point not evaluating correctly
+        u-= epsilon;
+
+    for(int i = 0; i < points.size()-1; ++i) {//ToDo: only calculate contributing weights
+        float qdenom = (knots[i+degree+1] - knots[i+1]);
+
+        result += bsplineBase(i+1, degree-1, u, knots) *
+                (degree / qdenom) *
+                (points[i+1].Location - points[i].Location);
     }
     return glm::normalize(result);
-}
-
-float BSpline::bsplineTangentBase(int i, int p, float u, const std::vector<float> &knots) const {
-    float denomA = knots[i+p] - knots[i];
-    float denomB = knots[i+p+1] - knots[i+1];
-    float coeffA = denomA > epsilon ? p / denomA : 0.f;
-    float coeffB = denomB > epsilon ? p / denomB : 0.f;
-
-    float baseA = bsplineBase(i, p-1, u, knots);
-    float baseB = bsplineBase(i+1, p-1, u, knots);
-    float result = coeffA * baseA + coeffB * baseB;
-    return result;
 }
 
 void BSpline::evaluateUntilTangent(float currentU, const glm::vec3 &currentTangent, float nextU, const glm::vec3 &nextTangent,
                                    std::vector<std::pair<float, glm::vec3>> &points,
                                    const std::vector<float> &knots, TrackGeometry *cps, float maxTangentChange) const {
     float cosangle = glm::dot(currentTangent, nextTangent);
+
     /*std::cout << std::setprecision(4) << std::setw(8) << currentU << " " << std::setw(8) << nextU
-        << " @ " << std::setw(8)<< acosf(cosangle)*180.f/3.141f << "° | ";*/
+        << " @ " << std::setw(8)<< acosf(cosangle)*180.f/3.141f << "° | ";/**/
         //<< std::setw(8) << currentTangent.x << "," << std::setw(8) << currentTangent.y << "," << std::setw(8) << currentTangent.z << " "
         //<< std::setw(8) << nextTangent.x << "," << std::setw(8) << nextTangent.y << "," << std::setw(8) << nextTangent.z;
     float udiff = std::abs(currentU-nextU);
     if(udiff < 0.002) {
-        std::cout << "!" << std::endl;
+        std::cerr << "Spline cannot reach requested LOD!" << std::endl;
         return;
     }
 
     if(cosangle < maxTangentChange) { //since we compare cos results, a smaller angle will have a bigger value
-        std::cout << std::endl;
+        //std::cout << std::endl;
 
         float middleU = (nextU - currentU) * 0.5f + currentU;
         glm::vec3 middleTangent = bsplineTangent(middleU, TRACKDEGREE, knots, cps);
@@ -140,8 +137,8 @@ void BSpline::evaluateUntilTangent(float currentU, const glm::vec3 &currentTange
         evaluateUntilTangent(middleU, middleTangent, nextU, nextTangent,
                 points, knots, cps, maxTangentChange);
     }
-    else
+    /*else
     {
         std::cout << ";" << std::endl;
-    }
+    }*/
 }
