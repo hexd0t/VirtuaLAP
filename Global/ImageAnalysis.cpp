@@ -63,13 +63,13 @@ void ImageAnalysis::Step(const CameraImageData *cameraImage, ImageAnalysisResult
             });
             result->Markers.emplace_back(MarkerInfo {
                     1,
-                    glm::vec3(300,0,0),
+                    glm::vec3(600,0,0),
                     glm::vec3(0,-1,0),
                     glm::vec3(0,0,1)
             });
             result->Markers.emplace_back(MarkerInfo {
-                    1,
-                    glm::vec3(150,-200,0),
+                    2,
+                    glm::vec3(250,-400,0),
                     glm::vec3(0,1,0),
                     glm::vec3(0,0,1)
             });

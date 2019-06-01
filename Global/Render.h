@@ -28,6 +28,7 @@ private: //Class members
     NVGcontext* _vg;
     bool _inVGFrame;
     glm::ivec3 _imgAnalysisDebugWindowLoc; //X, Y, Width
+    glm::ivec3 _renderDebugWindowLoc; //X, Y, Width
 
     //OpenGL handles
     unsigned int _carVBO;
@@ -50,8 +51,9 @@ private: //Private methods
 
     void uploadCameraImage(const CameraImageData* image);
 
-    void renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState);
+    void renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState, const int &trackSegmentCount);
     void renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis);
+    void renderUIrenderingDebug(const int &trackSegmentCount);
     void initUI();
     void drawUIwindowBorder(const char *title, float x, float y, float w, float h);
     void drawUIcontent(const char* content, float x, float y, float w, float h);

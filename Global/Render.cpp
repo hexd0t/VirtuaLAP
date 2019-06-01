@@ -14,7 +14,8 @@ Render::Render() :
     _outputWidthPx(1280), _outputHeightPx(768),
     _aspectRatio(1.333f), _fov(3.141f*0.5f), _farDistance(20000),
 
-    _vg(nullptr), _inVGFrame(false), _imgAnalysisDebugWindowLoc(20, 20, 200)
+    _vg(nullptr), _inVGFrame(false), _imgAnalysisDebugWindowLoc(20, 20, 200),
+    _renderDebugWindowLoc(460, 20, 200)
 {
 
 }
@@ -55,7 +56,7 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
     auto points = _track.Triangulate(track);
     for(auto& point : points) {
         _defaultShader.UpdateModel(
-                glm::translate(glm::mat4(1.0f), point));
+                glm::scale(glm::translate(glm::mat4(1.0f), point), glm::vec3(0.5f)));
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
         glDrawArrays(GL_TRIANGLE_STRIP, 8, 4);
@@ -65,7 +66,7 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
     }
 
 
-    renderUI(camImage, imgAnalysis, track, deltaT, gameState);
+    renderUI(camImage, imgAnalysis, track, deltaT, gameState, points.size());
 }
 
 void Render::FramebufferSizeChanged(int width, int height) {
@@ -142,11 +143,13 @@ void Render::Init() {
     initUI();
 }
 
-void Render::renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track, float deltaT, GameState* gameState) {
+void Render::renderUI(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, TrackGeometry *track,
+        float deltaT, GameState* gameState, const int &trackSegmentCount) {
     nvgBeginFrame(_vg, _outputWidthPx, _outputHeightPx, 1.0f);
     _inVGFrame = true;
 
     renderUIimgAnalysisDebug(imgAnalysis);
+    renderUIrenderingDebug(trackSegmentCount);
 
     _inVGFrame = false;
     nvgEndFrame(_vg);
@@ -288,5 +291,14 @@ void Render::uploadCameraImage(const CameraImageData *image) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     delete[] image->Data; //ToDo(AMü): Move allocation to Global/Core and reuse buffer
+}
+
+void Render::renderUIrenderingDebug(const int &trackSegmentCount) {
+    std::stringstream content;
+    content.setf(std::ios::fixed, std::ios::floatfield);
+    content.setf(std::ios::showpoint); //Always show float decimal place
+    content << trackSegmentCount << " Track segments";
+    auto loc = _renderDebugWindowLoc;
+    DrawUIwindow("Render info", content.str().c_str(), loc.x, loc.y, loc.z);
 }
 
