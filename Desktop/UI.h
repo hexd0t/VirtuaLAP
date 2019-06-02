@@ -13,6 +13,7 @@ private:
     GLFWwindow* _window = nullptr;
     CoreCallbacks _callbacks;
 
+    bool _debugWireframe = false;
     int _currentDebugImage = 0;
     cv::Mat _inputImg;
 public:

@@ -117,6 +117,12 @@ void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mod
             case GLFW_KEY_F4:
                 cycleDebugImage(1);
                 break;
+            case GLFW_KEY_F5:
+                _debugWireframe = !_debugWireframe;
+                if (_debugWireframe)
+                    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+                else
+                    glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
             default:
                 break;
         }

@@ -51,20 +51,15 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
             ));
 
     _defaultShader.UpdateModel(glm::mat4(1.0f));
-    glBindBuffer(GL_ARRAY_BUFFER, _carVBO);
 
-    auto points = _track.Triangulate(track);
+    std::vector<Vertex> trackVertices;
+    auto points = _track.Extrude(_track.Discretize(track));
     for(auto& point : points) {
-        _defaultShader.UpdateModel(
-                glm::scale(glm::translate(glm::mat4(1.0f), point), glm::vec3(0.5f)));
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
-        glDrawArrays(GL_TRIANGLE_STRIP, 8, 4);
-        glDrawArrays(GL_TRIANGLE_STRIP, 12, 4);
-        glDrawArrays(GL_TRIANGLE_STRIP, 16, 4);
-        glDrawArrays(GL_TRIANGLE_STRIP, 20, 4);
+        trackVertices.push_back(Vertex(point, glm::vec3(0,0,1), glm::vec2(0.f, 0.f)));
     }
-
+    unsigned int trackVB = CreateVertexBuffer(trackVertices);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, trackVertices.size());
+    glDeleteBuffers(1, &trackVB);
 
     renderUI(camImage, imgAnalysis, track, deltaT, gameState, points.size());
 }

@@ -13,6 +13,9 @@ public:
             : X( 0.0f ), Y( 0.0f ), Z( 0.0f ), NX( 0.0f ), NY( 0.0f ), NZ( 0.0f ), U(0.0f), V(0.0f) {} //Standardkonstruktor
     Vertex( const float& x, const float& y, const float& z, const float& nx, const float& ny, const float& nz, const float& u, const float& v )
             : X( x ), Y( y ), Z( z ), NX( nx ), NY( ny ), NZ( nz ), U( u ), V( v )  {} //Position, Normale, UV-Koordinaten
+    Vertex( const glm::vec3& pos, const glm::vec3& norm, const glm::vec2& tex)
+            : X( pos.x ), Y( pos.y ), Z( pos.z ), NX( norm.x ),
+              NY( norm.y ), NZ( norm.z ), U( tex.x ), V( tex.y ) {}
     static void SetLayout()
     {
         glEnableVertexAttribArray( 0 ); //Der VertexShader hat 3 Inputs, die aktiviert
