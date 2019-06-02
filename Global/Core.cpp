@@ -66,6 +66,11 @@ CoreCallbacks Core::GetCallbacks() {
         std::bind(&Core::FramebufferSizeChanged, this, _1, _2),
         std::bind(&Core::ToggleImgAnalysisDebug, this),
         std::bind(&Core::SimulateImgAnalysis, this),
+        std::bind(&Core::DisplayMarkers, this)
     };
+}
+
+void Core::DisplayMarkers() {
+    _analysis.ChangeState(ImageAnalysis_MarkerOutput);
 }
 

@@ -33,6 +33,7 @@ public:  //Public methods
     void FramebufferSizeChanged(int width, int height);
     void ToggleImgAnalysisDebug();
     void SimulateImgAnalysis();
+    void DisplayMarkers();
 
     CoreCallbacks GetCallbacks();
 private: //Private methods

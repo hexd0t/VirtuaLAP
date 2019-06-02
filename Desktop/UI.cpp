@@ -123,6 +123,8 @@ void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mod
                     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
                 else
                     glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+            case GLFW_KEY_F12:
+                _callbacks.DisplayMarkers();
             default:
                 break;
         }

@@ -15,7 +15,7 @@ add_executable(VirtuaLAP-Desktop main.cpp UI.cpp Dependencies/glad/src/glad.c ${
 #Find & link against OpenCV
 set(OpenCV_STATIC ON)
 FIND_PACKAGE(OpenCV REQUIRED PATHS Dependencies/opencv)
-TARGET_LINK_LIBRARIES(VirtuaLAP-Desktop opencv_core opencv_imgproc opencv_imgcodecs opencv_aruco)# opencv_highgui)
+TARGET_LINK_LIBRARIES(VirtuaLAP-Desktop opencv_core opencv_imgproc opencv_imgcodecs opencv_aruco opencv_highgui)
 
 #Build & link against GLFW
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)

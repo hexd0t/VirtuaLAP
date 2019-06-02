@@ -14,8 +14,9 @@ enum ImageAnalysisState {
     ImageAnalysis_Calibrating   = 0x0001,
     ImageAnalysis_Operating     = 0x0002,
 
-    ImageAnalysis_Simulating    = 0x0012
-            ,
+    ImageAnalysis_Simulating    = 0x0012,
+    ImageAnalysis_MarkerOutput  = 0x0021,
+
     ImageAnalysis_DebugOverlay  = 0x1000
 };
 struct MarkerInfo {
@@ -26,6 +27,7 @@ struct MarkerInfo {
 };
 struct ImageAnalysisResult {
     ImageAnalysisState State;
+    double CalibrationError;
     glm::vec3 CameraLocation;
     glm::vec3 CameraLookDirection;
     glm::vec3 CameraUp;

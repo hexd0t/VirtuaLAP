@@ -52,16 +52,19 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
 
     _defaultShader.UpdateModel(glm::mat4(1.0f));
 
-    std::vector<Vertex> trackVertices;
-    auto points = _track.Extrude(_track.Discretize(track));
-    for(auto& point : points) {
-        trackVertices.push_back(Vertex(point, glm::vec3(0,0,1), glm::vec2(0.f, 0.f)));
-    }
-    unsigned int trackVB = CreateVertexBuffer(trackVertices);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, trackVertices.size());
-    glDeleteBuffers(1, &trackVB);
+    if(imgAnalysis->State != ImageAnalysis_MarkerOutput) {
+        std::vector<Vertex> trackVertices;
+        auto points = _track.Extrude(_track.Discretize(track));
+        for (auto &point : points) {
+            trackVertices.emplace_back(point, glm::vec3(0, 0, 1), glm::vec2(0.f, 0.f));
+        }
+        unsigned int trackVB = CreateVertexBuffer(trackVertices);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, trackVertices.size());
+        glDeleteBuffers(1, &trackVB);
 
-    renderUI(camImage, imgAnalysis, track, deltaT, gameState, points.size());
+
+        renderUI(camImage, imgAnalysis, track, deltaT, gameState, points.size());
+    }
 }
 
 void Render::FramebufferSizeChanged(int width, int height) {
@@ -263,7 +266,9 @@ void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
     }
     if(imgAnalysis->State & ImageAnalysis_DebugOverlay)
         content << " (Debug)";
-    content << std::endl << std::setprecision(1) <<
+    content << std::endl;
+    content << "Calib err: " << imgAnalysis->CalibrationError << std::endl;
+    content << std::setprecision(1) <<
             "Camera Location:" << std::endl <<
             "X: " << std::setw(8) << imgAnalysis->CameraLocation.x << std::endl <<
             "Y: " << std::setw(8) << imgAnalysis->CameraLocation.y << std::endl <<

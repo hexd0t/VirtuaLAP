@@ -4,17 +4,18 @@
 
 #include "ImageAnalysis.h"
 #include <opencv2/core.hpp>
-#include <opencv2/aruco.hpp>
 #include <opencv2/imgproc.hpp>
-#include <chrono>
 #include <iostream>
 #include "glm/glm/gtc/matrix_transform.hpp"
-//#include <opencv2/highgui.hpp> //Enable for debugging using cv::imshow, also requires adding highgui in Desktop/CMakeList.txt
+#include <opencv2/highgui.hpp> //Enable for debugging using cv::imshow, also requires adding highgui in Desktop/CMakeList.txt
 
-using namespace std::chrono;
+constexpr int CALIBRATIONFRAMESPACING = 1000; //ms
 
 ImageAnalysis::ImageAnalysis() :
-    _state((ImageAnalysisState)(ImageAnalysis_Calibrating | ImageAnalysis_DebugOverlay)) {
+    _state((ImageAnalysisState)(ImageAnalysis_Calibrating | ImageAnalysis_DebugOverlay)),
+    _dict(cv::aruco::Dictionary::get(cv::aruco::DICT_5X5_250)),
+    _calibBoard(cv::aruco::CharucoBoard::create(5, 5, 30, 20, _dict))
+{
 
 }
 
@@ -29,10 +30,13 @@ void ImageAnalysis::Step(const CameraImageData *cameraImage, ImageAnalysisResult
 
     switch(_state & 0xFF) {
         case ImageAnalysis_Calibrating: {
-            //Do camera calibration
-            //Maybe use a "ChArUco" marker as the start/finish marker?
             //Always specify distances in millimeters
-
+            time_point<system_clock> now = system_clock::now();
+            auto calibAge = duration_cast<milliseconds>(now - _calibLastFrameTime);
+            if(calibAge.count() >= CALIBRATIONFRAMESPACING) {
+                _calibrate(inputImage);
+                _calibLastFrameTime = now;
+            }
             break;
         }
         case ImageAnalysis_Operating: {
@@ -75,16 +79,19 @@ void ImageAnalysis::Step(const CameraImageData *cameraImage, ImageAnalysisResult
             });
             break;
         }
+        case ImageAnalysis_MarkerOutput: {
+            cv::Mat marker(1000, 1000, CV_8UC3);
+            _calibBoard->draw(marker.size(), marker);
+            cv::imshow("board", marker);
+            cv::waitKey(0);
+            break;
+        }
         case ImageAnalysis_Unknown:
         default:
             std::cerr << "ImgAnalysis state: "<< std::hex << _state << std::endl;
             throw std::logic_error("Image analysis got into unknown state");
     }
-
-    //Test drawing onto the image
-    if(_state & ImageAnalysis_DebugOverlay) //Press F2 to toggle
-        cv::rectangle(inputImage, cv::Point(200.f,200.f), cv::Point(240.f, 240.f), cv::Scalar(0, 255, 0), 2);
-
+    result->CalibrationError = _calibCurrentError;
     result->State = _state;
 }
 
@@ -101,7 +108,52 @@ void ImageAnalysis::ChangeState(const ImageAnalysisState &newstate) {
         case ImageAnalysis_DebugOverlay:
             _state = (ImageAnalysisState)(_state ^ ImageAnalysis_DebugOverlay); //Toggle Overlay
             break;
+        case ImageAnalysis_MarkerOutput:
+            _state = ImageAnalysis_MarkerOutput;
+            break;
         default:
             throw std::logic_error("State switch not implemented");
+    }
+}
+
+void ImageAnalysis::_calibrate(cv::Mat& cameraImage) {
+    cv::Ptr<cv::aruco::DetectorParameters> detectorParams =
+            cv::aruco::DetectorParameters::create();
+    detectorParams->cornerRefinementMethod = cv::aruco::CORNER_REFINE_SUBPIX;
+    //Note: if we're performance constrained, this would probably work without refinement
+
+    std::vector< int > markerIds;
+    std::vector< std::vector< cv::Point2f > > markerCorners, markerRejected;
+    cv::aruco::detectMarkers(cameraImage, _dict, markerCorners, markerIds,
+            detectorParams, markerRejected);
+
+    if(markerIds.empty())
+        return;
+
+    if(_state & ImageAnalysis_DebugOverlay) {
+        cv::aruco::drawDetectedMarkers(cameraImage, markerCorners, markerIds, cv::Scalar(0,255,0));
+        cv::aruco::drawDetectedMarkers(cameraImage, markerRejected, cv::noArray(), cv::Scalar(255,0,0));
+    }
+
+    std::vector< cv::Point2f > charucoCorners;
+    std::vector< int > charucoIds;
+    cv::aruco::interpolateCornersCharuco(markerCorners, markerIds, cameraImage,
+            _calibBoard, charucoCorners, charucoIds);
+
+    if(charucoIds.empty())
+        return;
+
+    if(_state & ImageAnalysis_DebugOverlay) {
+        cv::aruco::drawDetectedCornersCharuco(cameraImage, charucoCorners, charucoIds, cv::Scalar(0,0,255));
+    }
+
+    _calibFramesCorners.push_back(charucoCorners);
+    _calibFramesIds.push_back(charucoIds);
+
+    _calibCurrentError = cv::aruco::calibrateCameraCharuco(_calibFramesCorners,
+            _calibFramesIds, _calibBoard, cameraImage.size(), _camera, _distortion);
+
+    if(_calibFramesIds.size() > 5 && _calibCurrentError < 1.0) {
+        _state = ImageAnalysis_Operating;
     }
 }
