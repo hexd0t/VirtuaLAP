@@ -11,6 +11,7 @@ using namespace std::chrono;
 class ImageAnalysis {
 private: //Class members
     ImageAnalysisState _state;
+
     time_point<system_clock> _calibLastFrameTime;
     std::vector<std::vector<int>> _calibFramesIds;
     std::vector<std::vector<cv::Point2f>> _calibFramesCorners;
@@ -20,6 +21,7 @@ private: //Class members
     cv::Mat _distortion;
     cv::Ptr<cv::aruco::Dictionary> _dict;
     cv::Ptr<cv::aruco::CharucoBoard> _calibBoard;
+    cv::Ptr<cv::aruco::DetectorParameters> _detectorParams;
 public:  //Public methods
     ImageAnalysis();
     ~ImageAnalysis();
@@ -28,5 +30,6 @@ public:  //Public methods
     void ChangeState(const ImageAnalysisState& newstate);
 private: //Private methods
     void _calibrate(cv::Mat& cameraImage);
+    void _detectMarkers(cv::Mat& cameraImage,ImageAnalysisResult* result);
 };
 

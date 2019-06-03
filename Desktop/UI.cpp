@@ -89,6 +89,17 @@ void UI::loadIcon() {
 
 void UI::CaptureImage(CameraImageData *result) {
 
+    static bool init = true;
+    if(init) {
+        int oldid = _currentDebugImage;
+        cycleDebugImage(1);
+        if(oldid == _currentDebugImage) {
+            init = false;
+            _currentDebugImage = 0;
+            cycleDebugImage(0);
+        }
+    }
+
     result->Height = _inputImg.rows;
     result->Width = _inputImg.cols;
     result->Data = new char[result->Height * result->Width * 3];
@@ -109,8 +120,10 @@ void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mod
                 break;
             case GLFW_KEY_F1:
                 _callbacks.SimulateImgAnalysis();
+                break;
             case GLFW_KEY_F2:
                 _callbacks.ToggleImgAnalysisDebug();
+                break;
             case GLFW_KEY_F3:
                 cycleDebugImage(-1);
                 break;
@@ -123,8 +136,10 @@ void UI::KeyEvent(GLFWwindow *window, int key, int scancode, int action, int mod
                     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
                 else
                     glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+                break;
             case GLFW_KEY_F12:
                 _callbacks.DisplayMarkers();
+                break;
             default:
                 break;
         }

@@ -55,7 +55,6 @@ std::vector<BSplineSample> BSpline::Discretize(TrackGeometry *track) {
                    knots, track, MAXATANGENTANGLE);/**/
         points.emplace_back(nextPoint);
 
-        std:: cout << std::endl;
         currentPoint = nextPoint;
         u += MAXUDELTA;
     }

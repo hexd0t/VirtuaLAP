@@ -4,7 +4,7 @@
 
 using namespace std::placeholders;
 int main() {
-    try {
+    //try {
         std::cout << "VirtuaLAP Desktop, starting..." << std::endl;
 
         UI ui;
@@ -19,7 +19,7 @@ int main() {
 
         ui.Deinit();
         return 0;
-    }
+    /*}
     catch (std::exception& ex) {
         std::cerr << "Unhandled exception: " << ex.what() << std::endl;
         return 1;
@@ -27,5 +27,5 @@ int main() {
     catch (...) {
         std::cerr << "Unknown unhandled exception, aborting" << std::endl;
         return 2;
-    }
+    }/**/
 }

@@ -44,27 +44,38 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
     //glDisable(GL_CULL_FACE);
     glFrontFace(GL_CCW);
     _defaultShader.Apply();
-    _defaultShader.UpdateView(glm::lookAt(
+
+    auto test =  imgAnalysis->TempCameraMat * glm::vec4(20.f, -20.f,  20.f, 1.0f);
+    //test = glm::perspective( _fov, _aspectRatio, 0.1f, _farDistance ) * test;
+    //std::cout << test.x << " "<< test.y << " "<< test.z << " "<< test.w  << std::endl;
+
+    _defaultShader.UpdateView(imgAnalysis->TempCameraMat);
+            /*glm::lookAt(
             imgAnalysis->CameraLocation,
             imgAnalysis->CameraLocation + imgAnalysis->CameraLookDirection,
             imgAnalysis->CameraUp
-            ));
+            ));/**/
 
     _defaultShader.UpdateModel(glm::mat4(1.0f));
-
-    if(imgAnalysis->State != ImageAnalysis_MarkerOutput) {
-        std::vector<Vertex> trackVertices;
-        auto points = _track.Extrude(_track.Discretize(track));
-        for (auto &point : points) {
-            trackVertices.emplace_back(point, glm::vec3(0, 0, 1), glm::vec2(0.f, 0.f));
-        }
-        unsigned int trackVB = CreateVertexBuffer(trackVertices);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, trackVertices.size());
-        glDeleteBuffers(1, &trackVB);
+    glBindBuffer(GL_ARRAY_BUFFER, _carVBO);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 8, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 12, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 16, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 20, 4);
 
 
-        renderUI(camImage, imgAnalysis, track, deltaT, gameState, points.size());
+    std::vector<Vertex> trackVertices;
+    auto points = _track.Extrude(_track.Discretize(track));
+    for (auto &point : points) {
+        trackVertices.emplace_back(point, glm::vec3(0, 0, 1), glm::vec2(0.f, 0.f));
     }
+    /*unsigned int trackVB = CreateVertexBuffer(trackVertices);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, trackVertices.size());
+    glDeleteBuffers(1, &trackVB);*/
+
+    renderUI(camImage, imgAnalysis, track, deltaT, gameState, points.size());
 }
 
 void Render::FramebufferSizeChanged(int width, int height) {
@@ -94,10 +105,10 @@ void Render::initVBOs() {
     fsqVertices.emplace_back( 1.f,  1.f, 0.f, 1.f, 0.f);
     std::vector<Vertex> carVertices;
     //Top:
-    carVertices.emplace_back( 20.f, -20.f,  20.f, 0.f, 0.f, 1.f, 1.f, 0.f);
-    carVertices.emplace_back( 20.f,  20.f,  20.f, 0.f, 0.f, 1.f, 1.f, 1.f);
-    carVertices.emplace_back(-20.f, -20.f,  20.f, 0.f, 0.f, 1.f, 0.f, 0.f);
-    carVertices.emplace_back(-20.f,  20.f,  20.f, 0.f, 0.f, 1.f, 0.f, 1.f);
+    carVertices.emplace_back( 20.f, -20.f,  20.f, 0.f, 0.f, 1.f, .5f, 0.5f);
+    carVertices.emplace_back( 20.f,  20.f,  20.f, 0.f, 0.f, 1.f, .5f, .5f);
+    carVertices.emplace_back(-20.f, -20.f,  20.f, 0.f, 0.f, 1.f, 0.5f, 0.5f);
+    carVertices.emplace_back(-20.f,  20.f,  20.f, 0.f, 0.f, 1.f, 0.5f, .5f);
     //Front:
     carVertices.emplace_back( 20.f, -20.f,  20.f, 1.f, 0.f, 0.f, 1.f, 0.f);
     carVertices.emplace_back( 20.f, -20.f, -20.f, 1.f, 0.f, 0.f, 0.f, 0.f);

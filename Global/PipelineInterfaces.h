@@ -28,10 +28,14 @@ struct MarkerInfo {
 struct ImageAnalysisResult {
     ImageAnalysisState State;
     double CalibrationError;
+
     glm::vec3 CameraLocation;
     glm::vec3 CameraLookDirection;
     glm::vec3 CameraUp;
+
     std::vector<MarkerInfo> Markers;
+
+    glm::mat4 TempCameraMat;
 };
 
 struct TrackControlPoint {
