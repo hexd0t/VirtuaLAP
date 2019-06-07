@@ -166,7 +166,7 @@ void UI::drawDebugUI() {
     text << "F1: Sim ImgAnal.\n";
     text << "F2: Debug ImgAnal.\n";
 
-    _callbacks.DrawUIWindow("Debug", text.str().c_str(), 240, 20, 200);
+    _callbacks.DrawUIWindow("Debug", text.str().c_str(), 20, 20, 200);
 }
 
 void UI::cycleDebugImage(int direction) {

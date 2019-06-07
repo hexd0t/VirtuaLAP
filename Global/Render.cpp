@@ -10,12 +10,15 @@
 #include "nanovg/src/nanovg_gl.h"
 #include "Render_Constants.h"
 
+//Reference https://github.com/Fendroidus/Guide-to-Modern-OpenGL-Functions/
+
 Render::Render() :
     _outputWidthPx(1280), _outputHeightPx(768),
     _aspectRatio(1.333f), _fov(3.141f*0.5f), _farDistance(20000),
 
-    _vg(nullptr), _inVGFrame(false), _imgAnalysisDebugWindowLoc(20, 20, 200),
-    _renderDebugWindowLoc(460, 20, 200)
+    _vg(nullptr), _inVGFrame(false),
+    _imgAnalysisDebugWindowLoc(460, 20, 400),
+    _renderDebugWindowLoc(240, 20, 200)
 {
 
 }
@@ -45,16 +48,7 @@ void Render::Step(CameraImageData *camImage, ImageAnalysisResult *imgAnalysis, T
     glFrontFace(GL_CCW);
     _defaultShader.Apply();
 
-    auto test =  imgAnalysis->TempCameraMat * glm::vec4(20.f, -20.f,  20.f, 1.0f);
-    //test = glm::perspective( _fov, _aspectRatio, 0.1f, _farDistance ) * test;
-    //std::cout << test.x << " "<< test.y << " "<< test.z << " "<< test.w  << std::endl;
-
-    _defaultShader.UpdateView(imgAnalysis->TempCameraMat);
-            /*glm::lookAt(
-            imgAnalysis->CameraLocation,
-            imgAnalysis->CameraLocation + imgAnalysis->CameraLookDirection,
-            imgAnalysis->CameraUp
-            ));/**/
+    _defaultShader.UpdateView(imgAnalysis->ViewMatrix);
 
     _defaultShader.UpdateModel(glm::mat4(1.0f));
     glBindBuffer(GL_ARRAY_BUFFER, _carVBO);
@@ -168,7 +162,7 @@ void Render::drawUIcontent(const char *content, float x, float y, float w, float
     nvgSave(_vg);
 
     nvgFontSize(_vg, 16.0f);
-    nvgFontFace(_vg, "arial");
+    nvgFontFace(_vg, "mono");
     nvgTextAlign(_vg,NVG_ALIGN_LEFT|NVG_ALIGN_TOP);
 
     nvgFontBlur(_vg,0);
@@ -214,7 +208,7 @@ void Render::drawUIwindowBorder(const char *title, float x, float y, float w, fl
     nvgStroke(_vg);
 
     nvgFontSize(_vg, 18.0f);
-    nvgFontFace(_vg, "arial");
+    nvgFontFace(_vg, "default");
     nvgTextAlign(_vg,NVG_ALIGN_CENTER|NVG_ALIGN_MIDDLE);
 
     nvgFontBlur(_vg,2);
@@ -233,9 +227,11 @@ void Render::initUI() {
 
     //Note(AMü): Since these will never be unloaded, we don't store the handles returned
 #if defined _WIN32
-    nvgCreateFont(_vg, "arial", "C:/Windows/Fonts/arial.ttf");
+    nvgCreateFont(_vg, "default", "C:/Windows/Fonts/arial.ttf");
+    nvgCreateFont(_vg, "mono", "C:/Windows/Fonts/consola.ttf");
 #else
-    nvgCreateFont(_vg, "arial", "/usr/share/fonts/TTF/DejaVuSans.ttf");
+    nvgCreateFont(_vg, "default", "/usr/share/fonts/TTF/DejaVuSans.ttf");
+    nvgCreateFont(_vg, "mono", "/usr/share/fonts/TTF/DejaVuSansMono.ttf");
 #endif
 }
 
@@ -280,13 +276,20 @@ void Render::renderUIimgAnalysisDebug(const ImageAnalysisResult *imgAnalysis) {
     content << std::endl;
     content << "Calib err: " << imgAnalysis->CalibrationError << std::endl;
     content << std::setprecision(1) <<
-            "Camera Location:" << std::endl <<
-            "X: " << std::setw(8) << imgAnalysis->CameraLocation.x << std::endl <<
-            "Y: " << std::setw(8) << imgAnalysis->CameraLocation.y << std::endl <<
-            "Z: " << std::setw(8) << imgAnalysis->CameraLocation.z << std::endl;
+            "Camera Matrix:" << std::endl;
+
+    content << std::fixed << std::showpos;
+    for(int u = 0; u < 4; ++u) {
+        for(int v = 0; v < 4; ++v) {
+            content << std::setfill('0') << std::setprecision(3) << std::setw(9) <<
+                std::internal << imgAnalysis->ViewMatrix[v][u]<< " ";
+        }
+        content << std::endl;
+    }
+    content.unsetf(std::stringstream::showpos);
     content << "Currently known markers:" << std::endl << std::setfill('0');
     for(auto & MarkerLocation : imgAnalysis->Markers) {
-        content << std::setw(0) << MarkerLocation.id << std::endl;
+        content << std::setw(3) << MarkerLocation.id << std::endl;
     }
     auto loc = _imgAnalysisDebugWindowLoc;
     DrawUIwindow("ImageAnalysis Data", content.str().c_str(), loc.x, loc.y, loc.z);

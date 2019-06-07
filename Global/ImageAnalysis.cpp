@@ -30,7 +30,7 @@ void ImageAnalysis::Step(const CameraImageData *cameraImage, ImageAnalysisResult
     //ToDo: Implement image Analysis here. For debugging purposes, you can edit the camera image to draw stuff to the output window
     //Also, contents of the result struct will be printed
     cv::Mat inputImage(cameraImage->Height, cameraImage->Width, CV_8UC3, cameraImage->Data);
-    result->TempCameraMat = glm::mat4(1.f);
+    result->ViewMatrix = glm::mat4(1.f);
 
     switch(_state & 0xFF) {
         case ImageAnalysis_Calibrating: {
@@ -52,9 +52,8 @@ void ImageAnalysis::Step(const CameraImageData *cameraImage, ImageAnalysisResult
                     time_point_cast<milliseconds>(std::chrono::system_clock::now()).time_since_epoch() ).count() % (3141 * 2);
 
             auto rotate = glm::rotate(glm::mat4(1.0f), clock_ms*0.001f, glm::vec3(0,0,1));
-            result->CameraLocation = rotate * glm::vec4(1000, 0, 1000, 1);
-            result->CameraLookDirection = glm::normalize(-result->CameraLocation);
-            result->CameraUp = glm::vec3(0, 0, 1);
+            glm::vec3 location = rotate * glm::vec4(1000, 0, 1000, 1);
+            result->ViewMatrix = glm::lookAt(location, glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f));
 
             result->Markers.emplace_back(MarkerInfo {
                     0, //Marker 0 always should have these properties, since it defines the origin
@@ -155,19 +154,6 @@ void ImageAnalysis::_calibrate(cv::Mat& cameraImage) {
     if(_calibFramesIds.size() >= 20 && _calibCurrentError < 2.0) {
         _state = static_cast<ImageAnalysisState>(
                 (_state | ImageAnalysis_Operating) & ~ImageAnalysis_Calibrating);
-
-        std::cout << "Cam:" << std::endl;
-        for(size_t j = 0; j < 3; ++j) {
-            for (size_t k = 0; k < 3; ++k) {
-                std::cout << _camera.at<float>(j, k) << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << "Dist:" << std::endl;
-        for(size_t j = 0; j < 4; ++j) {
-            std::cout << _distortion.at<float>(j) << " ";
-            std::cout << std::endl;
-        }
     }
 }
 
@@ -192,36 +178,17 @@ void ImageAnalysis::_detectMarkers(cv::Mat &cameraImage, ImageAnalysisResult* re
     for(size_t i = 0; i < markerIds.size(); ++i){
         cv::aruco::drawAxis(cameraImage, _camera, _distortion, rvecs[i], tvecs[i], 40.f);
         if(markerIds[i] == 3) {
-            result->CameraLocation = glm::vec3(
-                    tvecs[i][0], -tvecs[i][1], tvecs[i][2]
-                    );
+            auto translate = glm::vec3(tvecs[i][0], -tvecs[i][1], -tvecs[i][2]);
 
             cv::Mat rotation;
 
-            float theta = cv::norm(rvecs[i]);
-            glm::vec3 rotateAxis(rvecs[i][0]/theta, rvecs[i][1]/theta, rvecs[i][2]/theta);
-            //std::cout << theta << " " << rotateAxis.x << " " << rotateAxis.y << " " << rotateAxis.z << std::endl;
-            glm::mat4 glmRotate = glm::rotate(glm::mat4(1), theta, rotateAxis);
-
-            /*for(size_t j = 0; j < 4; ++j) {
-                for (size_t k = 0; k < 4; ++k) {
-                    std::cout << glmRotate[j][k] << " ";
-                }
-                std::cout << std::endl;
-            }*/
-
-
-            /*cv::Rodrigues(rvecs[i], rotation);
-            result->TempCameraMat = glm::mat4(1.f);
+            cv::Rodrigues(rvecs[i], rotation);
+            result->ViewMatrix = glm::translate(glm::mat4(1.f), translate);
             for(size_t j = 0; j < 3; ++j) {
                 for (size_t k = 0; k < 3; ++k) {
-                    result->TempCameraMat[j][k] = rotation.at<float>(j, k);
-                    std::cout << rotation.at<float>(j, k) << " ";
+                    result->ViewMatrix[j][k] = rotation.at<double>(j, k);
                 }
-                std::cout << std::endl;
             }
-            std::cout << std::endl;*/
-            result->TempCameraMat = glm::translate(glmRotate, result->CameraLocation);
         }
     }
 }
